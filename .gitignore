@@ -22,7 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
-#ide
+# ide
 /.idea
 /.vscode
+
+# types from backend config file
+tsconfig.paths.json
