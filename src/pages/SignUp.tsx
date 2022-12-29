@@ -28,12 +28,12 @@ const SignUp = () => {
   return (
     <>
       <section>
-        <h1>Sign up</h1>
-        <p>
-          Already have an account? <Link to="/">Log in here.</Link>
+        <h1 className='section-title'>Sign up</h1>
+        <p className='account-info'>
+          Already have an account? <Link to="/" className='sign-up account-info'>Log in here.</Link>
         </p>
       </section>
-      <section>
+      <section className="form-box">
         <AuthForm
           onSubmit={onSubmit}
           onChange={onChange}

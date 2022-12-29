@@ -26,22 +26,24 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div>
       <section>
-        <h1>Log in</h1>
-        <p>
-          Don't have an account? <Link to="/sign-up">Sign up now!</Link>
+        <h1 className='section-title'>Log in</h1>
+        <p className='account-info'>
+          Don't have an account? <Link to="/sign-up" className='sign-up account-info'>Sign up now!</Link>
         </p>
       </section>
-      <section>
-        <AuthForm
-          onSubmit={onSubmit}
-          onChange={onChange}
-          email={email}
-          password={password}
-        />
+      <section className="form-box">
+        <div >
+          <AuthForm
+              onSubmit={onSubmit}
+              onChange={onChange}
+              email={email}
+              password={password}
+          />
+        </div>
       </section>
-    </>
+    </div>
   );
 };
 
