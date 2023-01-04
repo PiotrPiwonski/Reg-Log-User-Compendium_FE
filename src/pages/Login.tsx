@@ -1,23 +1,20 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import AuthForm from '../components/AuthForm';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const { email, password } = formData;
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const propName = e.currentTarget.name;
-    const newValue = e.currentTarget.value;
-
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [propName]: newValue,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -41,38 +38,31 @@ const Login = () => {
         // console.log(formData);
         alert('Błędny email lub hasło. ');
       }
-    }catch(error) {
+    } catch (error) {
       console.log('Error: ', error);
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
-
-
   };
 
   if (loading) {
-    return (
-        <h1>Loading...</h1>
-    )
+    return <h1>Loading...</h1>;
   }
 
   return (
     <div>
       <section>
-        <h1 className='section-title'>Log in</h1>
-        <p className='account-info'>
-          Don't have an account? <Link to="/sign-up" className='sign-up account-info'>Sign up now!</Link>
+        <h1 className="section-title">Log in</h1>
+        <p className="account-info">
+          Don't have an account?{' '}
+          <Link to="/sign-up" className="sign-up account-info">
+            Sign up now!
+          </Link>
         </p>
       </section>
       <section className="form-box">
-        <div >
-          <AuthForm
-              onSubmit={onSubmit}
-              onChange={onChange}
-              email={email}
-              password={password}
-          />
+        <div>
+          <AuthForm onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
         </div>
       </section>
     </div>
