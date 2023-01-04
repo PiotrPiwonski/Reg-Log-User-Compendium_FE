@@ -9,6 +9,8 @@ const Login = () => {
   });
   const { email, password } = formData;
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const propName = e.currentTarget.name;
     const newValue = e.currentTarget.value;
@@ -19,11 +21,41 @@ const Login = () => {
     }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO Send to backend
+
     console.log(formData);
+    setLoading(true);
+
+    try {
+      const res = await fetch('http://localhost:3001/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (res.status === 200) {
+        alert('Jesteś zalogowany.');
+      } else if (res.status === 401) {
+        // console.log(formData);
+        alert('Błędny email lub hasło. ');
+      }
+    }catch {
+      console.log('Error.');
+    }
+    finally {
+      setLoading(false);
+    }
+
+
   };
+
+  if (loading) {
+    return (
+        <h1>Loading...</h1>
+    )
+  }
 
   return (
     <div>
