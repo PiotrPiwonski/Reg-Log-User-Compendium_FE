@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
+import { UserLoginReq } from 'types';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,8 @@ const Login = () => {
     setLoading(true);
 
     try {
+      const loginData: UserLoginReq = { ...formData };
+
       const res = await fetch('http://localhost:3001/user/login', {
         method: 'POST',
         headers: {
