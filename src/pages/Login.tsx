@@ -41,8 +41,8 @@ const Login = () => {
         // console.log(formData);
         alert('Błędny email lub hasło. ');
       }
-    }catch {
-      console.log('Error.');
+    }catch(error) {
+      console.log('Error: ', error);
     }
     finally {
       setLoading(false);
