@@ -1,21 +1,18 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import AuthForm from '../components/AuthForm';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const { email, password } = formData;
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const propName = e.currentTarget.name;
-    const newValue = e.currentTarget.value;
-
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [propName]: newValue,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -28,18 +25,16 @@ const SignUp = () => {
   return (
     <>
       <section>
-        <h1 className='section-title'>Sign up</h1>
-        <p className='account-info'>
-          Already have an account? <Link to="/" className='sign-up account-info'>Log in here.</Link>
+        <h1 className="section-title">Sign up</h1>
+        <p className="account-info">
+          Already have an account?{' '}
+          <Link to="/" className="sign-up account-info">
+            Log in here.
+          </Link>
         </p>
       </section>
       <section className="form-box">
-        <AuthForm
-          onSubmit={onSubmit}
-          onChange={onChange}
-          email={email}
-          password={password}
-        />
+        <AuthForm onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
       </section>
     </>
   );
