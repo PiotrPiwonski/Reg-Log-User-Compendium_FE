@@ -4,6 +4,7 @@ import SignUp from './pages/SignUp';
 
 const App = () => {
   console.log('husky test 1');
+  console.log('husky test 2');
 
   return (
     <Router>
