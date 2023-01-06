@@ -6,6 +6,7 @@ const App = () => {
   console.log('husky test 1');
   console.log('husky test 2');
   console.log('husky test 3');
+  console.log('husky test 4');
 
   return (
     <Router>
