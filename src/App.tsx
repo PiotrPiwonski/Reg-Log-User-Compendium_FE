@@ -3,6 +3,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
 const App = () => {
+  console.log('husky test 1');
+
   return (
     <Router>
       <Routes>
