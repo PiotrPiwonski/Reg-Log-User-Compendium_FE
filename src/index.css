@@ -147,21 +147,3 @@ button {
     height: 350px;
   }
 }
-
-.default-loader-style{
-  border-radius: 100%;
-  background: transparent;
-  aspect-ratio: 1;
-  border:var(--loader-track-color);
-  border-top:var(--loader-thumb-color);
-  border-style: solid;
-  display: flex;
-  animation: 2s loader-animation infinite forwards ease-in-out;
-}
-
-
-@keyframes loader-animation {
-  100%{
-    rotate: 360deg;
-  }
-}
