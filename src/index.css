@@ -3,7 +3,11 @@
 :root {
   --white: rgb(255, 255, 255);
   --grey-bgc: rgba(221, 221, 221, 0.1);
-  --grey: rgb(119, 119, 122)
+  --grey: rgb(119, 119, 122);
+  --loader-track-color: #151515;
+  --loader-thumb-color: #6609c4;
+  --page-loader-backdrop: #1f1f1f;
+  --component-loader-backdrop: rgba(0, 0, 0, 0.4  );
 }
 
 * {
@@ -49,6 +53,7 @@ body{
 /*  cursor: pointer;*/
 /*}*/
 .form-box {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -140,5 +145,23 @@ button {
   }
   .form-box {
     height: 350px;
+  }
+}
+
+.default-loader-style{
+  border-radius: 100%;
+  background: transparent;
+  aspect-ratio: 1;
+  border:var(--loader-track-color);
+  border-top:var(--loader-thumb-color);
+  border-style: solid;
+  display: flex;
+  animation: 2s loader-animation infinite forwards ease-in-out;
+}
+
+
+@keyframes loader-animation {
+  100%{
+    rotate: 360deg;
   }
 }
