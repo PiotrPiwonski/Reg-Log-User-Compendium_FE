@@ -8,6 +8,7 @@ type Props = {
 
 const initialState: AuthState = {
   user: null,
+  isLoading: false,
 };
 
 const AuthContext = createContext<{ state: AuthState; dispatch: React.Dispatch<AuthActions> }>({

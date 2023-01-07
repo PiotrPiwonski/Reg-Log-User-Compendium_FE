@@ -3,6 +3,7 @@ import { UserLoginRes } from 'types';
 // State:
 export interface AuthState {
   user: UserLoginRes | null;
+  isLoading: boolean;
 }
 
 // Reducer actions:
