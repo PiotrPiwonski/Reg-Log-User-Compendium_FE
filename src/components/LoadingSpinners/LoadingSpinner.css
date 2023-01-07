@@ -30,8 +30,8 @@
     z-index: 1000;
 }
 .page-loader{
-    width: clamp(100px, 20vw, 250px);
-    border-width: clamp(10px, 20vw, 23px);
+    width: clamp(130px, 20vw, 250px);
+    border-width: clamp(5px, 20vw, 23px);
 }
 .dark-loader-style{
     border-radius: 100%;

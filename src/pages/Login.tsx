@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
+import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -46,7 +47,7 @@ const Login = () => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <LoadingSpinner isLoadingPage={true} />;
   }
 
   return (
