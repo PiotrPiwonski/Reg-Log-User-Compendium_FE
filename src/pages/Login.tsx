@@ -13,7 +13,7 @@ const Login = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  useDocumentTitle('Warsaw Team Login page');
+  useDocumentTitle('Warsaw Team Sign in');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({

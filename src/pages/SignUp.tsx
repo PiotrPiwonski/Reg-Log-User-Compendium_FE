@@ -9,7 +9,7 @@ const SignUp = () => {
     password: '',
   });
 
-  useDocumentTitle('Warsaw Team Sing Up');
+  useDocumentTitle('Warsaw Team Sign Up');
 
   const { email, password } = formData;
 
