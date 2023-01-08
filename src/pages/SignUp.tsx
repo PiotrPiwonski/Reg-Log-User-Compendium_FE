@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  useDocumentTitle('Warsaw Team Sing Up');
+
   const { email, password } = formData;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
