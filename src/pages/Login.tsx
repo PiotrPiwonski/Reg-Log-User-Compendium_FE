@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { pagesTitles } from '../config/pages-title';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const Login = () => {
   const { email, password } = formData;
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  useDocumentTitle(pagesTitles.SIGN_IN);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
