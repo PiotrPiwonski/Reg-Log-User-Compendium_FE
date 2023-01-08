@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import { pagesTitles } from '../config/pages-title';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ const SignUp = () => {
     password: '',
   });
 
-  useDocumentTitle('Warsaw Team Sign Up');
+  useDocumentTitle(pagesTitles.SIGN_UP);
 
   const { email, password } = formData;
 
