@@ -27,6 +27,7 @@ const Login = () => {
     try {
       const res = await fetch('http://localhost:3001/user/login', {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
