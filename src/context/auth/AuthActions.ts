@@ -1,4 +1,4 @@
-import { UserLoginRes } from 'types';
+import { UserLoginRes } from 'types/backend';
 
 export const getUserWithCookie = async () => {
   try {

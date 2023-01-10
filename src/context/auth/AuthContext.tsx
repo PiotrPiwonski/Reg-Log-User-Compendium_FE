@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react';
-import { AuthState, AuthActions } from '../../types';
+import { AuthState, AuthActions } from 'types/frontend';
 import authReducer from './AuthReducer';
 
 type Props = {

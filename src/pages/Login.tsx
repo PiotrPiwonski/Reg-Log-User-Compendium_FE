@@ -5,7 +5,7 @@ import AuthForm from '../components/AuthForm';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { pagesTitles } from '../config/pages-title';
-import { UserLoginRes } from 'types';
+import { UserLoginRes } from 'types/backend';
 
 const Login = () => {
   // Local state
