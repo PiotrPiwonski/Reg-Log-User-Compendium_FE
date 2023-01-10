@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../context/auth/AuthContext';
 import AuthForm from '../components/AuthForm';
+import { UserLoginRes } from 'types';
 
 const Login = () => {
+  // Local state
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const { email, password } = formData;
 
-  const [loading, setLoading] = useState<boolean>(false);
+  // Context
+  const { state, dispatch } = useContext(AuthContext);
+  const isAuthLoading = state.isLoading;
 
+  // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -21,8 +27,7 @@ const Login = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(formData);
-    setLoading(true);
+    dispatch({ type: 'SET_LOADING' });
 
     try {
       const res = await fetch('http://localhost:3001/user/login', {
@@ -33,20 +38,25 @@ const Login = () => {
         },
         body: JSON.stringify(formData),
       });
+
       if (res.status === 200) {
-        alert('Jesteś zalogowany.');
+        const userData = (await res.json()) as UserLoginRes;
+        dispatch({ type: 'SET_USER', payload: userData });
+
+        alert('Poprawnie zalogowano!');
       } else if (res.status === 401) {
-        // console.log(formData);
-        alert('Błędny email lub hasło. ');
+        alert('Błędny email lub hasło.');
       }
     } catch (error) {
+      alert('Coś poszło nie tak...');
       console.log('Error: ', error);
     } finally {
-      setLoading(false);
+      dispatch({ type: 'CLEAR_LOADING' });
     }
   };
 
-  if (loading) {
+  // Returns
+  if (isAuthLoading) {
     return <h1>Loading...</h1>;
   }
 
