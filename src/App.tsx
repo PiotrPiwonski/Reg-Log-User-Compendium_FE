@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthContext from './context/auth/AuthContext';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
 
 const App = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const App = () => {
     })();
   }, [dispatch]);
 
-  if (authState.isLoading) return <h1>Loading...</h1>;
+  if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
     <Router>
