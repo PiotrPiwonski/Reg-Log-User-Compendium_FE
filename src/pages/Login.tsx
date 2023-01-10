@@ -13,8 +13,10 @@ const Login = () => {
   const { email, password } = formData;
 
   // Context
-  const { state, dispatch } = useContext(AuthContext);
-  const isAuthLoading = state.isLoading;
+  const {
+    state: { isLoading: isAuthLoading },
+    dispatch,
+  } = useContext(AuthContext);
 
   // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
