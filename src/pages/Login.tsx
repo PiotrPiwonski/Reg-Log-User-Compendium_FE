@@ -13,10 +13,7 @@ const Login = () => {
   const { email, password } = formData;
 
   // Context
-  const {
-    state: { isLoading: isAuthLoading },
-    dispatch,
-  } = useContext(AuthContext);
+  const { state: authState, dispatch } = useContext(AuthContext);
 
   // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,8 +41,6 @@ const Login = () => {
       if (res.status === 200) {
         const userData = (await res.json()) as UserLoginRes;
         dispatch({ type: 'SET_USER', payload: userData });
-
-        alert('Poprawnie zalogowano!');
       } else if (res.status === 401) {
         alert('Błędny email lub hasło.');
       }
@@ -58,8 +53,18 @@ const Login = () => {
   };
 
   // Returns
-  if (isAuthLoading) {
+  if (authState.isLoading) {
     return <h1>Loading...</h1>;
+  }
+
+  if (authState.user) {
+    return (
+      <div>
+        <h1>Witaj {authState.user.email}</h1>
+        <p>Twoje ID: {authState.user.id}</p>
+        <p>Twoja rola: {authState.user.role}</p>
+      </div>
+    );
   }
 
   return (
