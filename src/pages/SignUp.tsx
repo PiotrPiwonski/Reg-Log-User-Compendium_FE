@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 
 const SignUp = () => {
+  // Local state
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const { email, password } = formData;
 
+  // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -22,6 +24,7 @@ const SignUp = () => {
     console.log(formData);
   };
 
+  // Returns
   return (
     <>
       <section>
