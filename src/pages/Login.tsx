@@ -4,7 +4,7 @@ import AuthContext from '../context/auth/AuthContext';
 import AuthForm from '../components/AuthForm';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
-import { pagesTitles } from '../config/pages-title';
+import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
   // Context
   const { state: authState, dispatch } = useContext(AuthContext);
 
-  useDocumentTitle(pagesTitles.SIGN_IN);
+  useDocumentTitle(PagesTitles.SIGN_IN);
 
   // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

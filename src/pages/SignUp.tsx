@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthForm from '../components/AuthForm';
 import useDocumentTitle from '../hooks/useDocumentTitle';
-import { pagesTitles } from '../config/pages-title';
+import { PagesTitles } from '../config/pages-title';
 
 const SignUp = () => {
   // Local state
@@ -11,7 +11,7 @@ const SignUp = () => {
     password: '',
   });
 
-  useDocumentTitle(pagesTitles.SIGN_UP);
+  useDocumentTitle(PagesTitles.SIGN_UP);
 
   const { email, password } = formData;
 
