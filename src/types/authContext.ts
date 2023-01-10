@@ -7,4 +7,8 @@ export interface AuthState {
 }
 
 // Reducer actions:
-export type AuthActions = { type: 'RESET_USER'; payload: null } | { type: 'SET_USER'; payload: UserLoginRes };
+export type AuthActions =
+  | { type: 'RESET_USER' }
+  | { type: 'SET_USER'; payload: UserLoginRes }
+  | { type: 'SET_LOADING' }
+  | { type: 'CLEAR_LOADING' };
