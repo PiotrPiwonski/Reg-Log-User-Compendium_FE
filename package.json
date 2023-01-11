@@ -54,6 +54,6 @@
     "prettier": "^2.8.1"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,jsx,css,html,json}": "npm run format"
+    "*.{ts,tsx,js,jsx,css,html,json}": "npm run format"
   }
 }
