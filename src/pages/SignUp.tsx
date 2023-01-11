@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AuthForm from '../components/AuthForm';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { pagesTitles } from '../config/pages-title';
+import RegForm from '../components/RegForm';
+import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
   useDocumentTitle(pagesTitles.SIGN_UP);
 
-  const { email, password } = formData;
+  const { email, password, confirmPassword } = formData;
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
@@ -21,11 +24,55 @@ const SignUp = () => {
     }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO Send to backend
     console.log(formData);
+
+    setLoading(true);
+
+    if (password.length < 6) {
+      console.log(password);
+      alert('Hasło musi mieć minimum 6 znaków.');
+      setLoading(false);
+      return;
+    }
+    if (password.length > 16) {
+      alert('Hasło musi mieć maximum 16 znaków.');
+      setLoading(false);
+      return;
+    }
+
+    if (password === confirmPassword) {
+      try {
+        const res = await fetch('http://localhost:3001/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.body;
+        console.log(data);
+        if (res.status === 201) {
+          alert('Jesteś zarejestrowany.');
+        } else if (res.status === 400) {
+          alert('Użytkownik o takim email już istnieje ! ');
+        }
+      } catch (error) {
+        console.log('Error: ', error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert('Niepoprawne powtórzenie hasła!');
+      setLoading(false);
+      return;
+    }
   };
+
+  if (loading) {
+    return <LoadingSpinner isLoadingPage={true} />;
+  }
 
   return (
     <>
@@ -39,7 +86,13 @@ const SignUp = () => {
         </p>
       </section>
       <section className="form-box">
-        <AuthForm onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
+        <RegForm
+          onSubmit={onSubmit}
+          onChange={onChange}
+          email={email}
+          password={password}
+          confirmPassword={confirmPassword}
+        />
       </section>
     </>
   );
