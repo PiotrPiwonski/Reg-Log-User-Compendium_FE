@@ -7,7 +7,7 @@
   --loader-track-color: #151515;
   --loader-thumb-color: #6609c4;
   --page-loader-backdrop: #1f1f1f;
-  --component-loader-backdrop: rgba(0, 0, 0, 0.4  );
+  --component-loader-backdrop: rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -22,17 +22,32 @@ html {
   color: #ddd;
 }
 
-body{
+body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(#1a0135, transparent),
-  radial-gradient(circle at left 13% bottom 0%, rgb(0,0,180,0.7), #6609c4 6%, #690e8f 15%, #3e1451 43%, transparent),
-  radial-gradient(circle at right 10% bottom 50%, #bc4ad9 3%, darkviolet 15%, blueviolet, #3e1451 45%, #1a0135 60%, transparent);
+    radial-gradient(
+      circle at left 13% bottom 0%,
+      rgb(0, 0, 180, 0.7),
+      #6609c4 6%,
+      #690e8f 15%,
+      #3e1451 43%,
+      transparent
+    ),
+    radial-gradient(
+      circle at right 10% bottom 50%,
+      #bc4ad9 3%,
+      darkviolet 15%,
+      blueviolet,
+      #3e1451 45%,
+      #1a0135 60%,
+      transparent
+    );
 }
 
-.section-title{
+.section-title {
   margin-bottom: 0.5rem;
   text-align: center;
   font-size: 4rem;
@@ -68,7 +83,7 @@ body{
   border: none;
   border-radius: 0.5rem;
 }
-.email{
+.email {
   margin-bottom: 4rem;
 }
 .input-box {
@@ -87,19 +102,19 @@ body{
   font-weight: normal;
   border-radius: 0.5rem;
 }
-input{
+input {
   width: 20vw;
-  padding:0 0.5rem;
+  padding: 0 0.5rem;
   outline: var(--white);
   border: var(--white);
   color: var(--grey);
   font-size: 1.5rem;
 }
 
-.input-icon{
+.input-icon {
   height: 2.5rem;
   width: 2.5rem;
-  padding:0 0 0 0.5rem
+  padding: 0 0 0 0.5rem;
 }
 
 .arrow-icon {
@@ -122,7 +137,7 @@ button {
   background-image: linear-gradient(51deg, rgba(64, 64, 255, 1) 0%, rgba(188, 74, 217, 1) 63%);
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .section-title {
     font-size: 46px;
   }
@@ -135,7 +150,7 @@ button {
   }
 }
 
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
   .section-title {
     font-size: 52px;
   }
