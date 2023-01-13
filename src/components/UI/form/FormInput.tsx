@@ -1,26 +1,42 @@
-import { HiOutlineUserCircle, HiOutlineEye } from 'react-icons/hi';
+import { IconType } from 'react-icons/lib';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 interface Props {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   type: string;
   placeholder: string;
-  inputBoxClass: string;
+  className?: string;
   labelTitle: string;
   value: string;
-  reactIcon?: string;
+  IconInput?: IconType;
+  isButtonSubmit?: boolean;
 }
 
-const FormInput = ({ onChange, name, type, placeholder, inputBoxClass, labelTitle, value, reactIcon }: Props) => {
+const FormInput = ({
+  onChange,
+  name,
+  type,
+  placeholder,
+  className,
+  labelTitle,
+  value,
+  IconInput,
+  isButtonSubmit,
+}: Props) => {
   return (
-    <div className={`input-box ${inputBoxClass}`}>
+    <div className={`input-box ${className}`}>
       <label htmlFor={name} className="labels">
         {labelTitle}
       </label>
       <div className="input-panel">
-        // @TODO zaimplementować obsługę ikon react
-        <HiOutlineEye className="input-icon" />
+        {IconInput && <IconInput className="input-icon" />}
         <input type={type} name={name} id={name} value={value} onChange={onChange} placeholder={placeholder} />
+        {isButtonSubmit && (
+          <button type="submit">
+            <MdArrowForwardIos className="arrow-icon" />
+          </button>
+        )}
       </div>
     </div>
   );
