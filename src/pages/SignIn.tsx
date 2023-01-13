@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import AuthContext from '../context/auth/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
 import FormSignIn from '../components/UI/form/FormSignIn';
+import FormHeading from '../components/UI/form/FormHeading';
 
 const SignIn = () => {
   // Local state
@@ -72,20 +72,7 @@ const SignIn = () => {
     );
   }
 
-  return (
-    <div>
-      <section>
-        <h1 className="section-title">Sign in</h1>
-        <p className="account-info">
-          Don't have an account?{' '}
-          <Link to="/sign-up" className="sign-up account-info">
-            Sign up now!
-          </Link>
-        </p>
-      </section>
-      <FormSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
-    </div>
-  );
+  return <FormSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />;
 };
 
 export default SignIn;
