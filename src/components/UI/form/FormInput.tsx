@@ -8,7 +8,7 @@ interface Props {
   inputBoxClass: string;
   labelTitle: string;
   value: string;
-  reactIcon: string;
+  reactIcon?: string;
 }
 
 const FormInput = ({ onChange, name, type, placeholder, inputBoxClass, labelTitle, value, reactIcon }: Props) => {
@@ -18,8 +18,8 @@ const FormInput = ({ onChange, name, type, placeholder, inputBoxClass, labelTitl
         {labelTitle}
       </label>
       <div className="input-panel">
-        if (reactIcon === HiOutlineEye) {<HiOutlineEye className="input-icon" />}
-        if (reactIcon === HiOutlineUserCircle) {<HiOutlineUserCircle className="input-icon" />}
+        // @TODO zaimplementować obsługę ikon react
+        <HiOutlineEye className="input-icon" />
         <input type={type} name={name} id={name} value={value} onChange={onChange} placeholder={placeholder} />
       </div>
     </div>
