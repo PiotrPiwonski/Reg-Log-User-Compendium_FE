@@ -1,18 +1,17 @@
-import FormInput from './FormInput';
+import FormInput from '../UI/form/FormInput';
 import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
-import FormHeading from './FormHeading';
+import FormHeading from '../UI/form/FormHeading';
 
 interface Props {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   email: string;
   password: string;
-  repeatPassword: string;
 }
-const FormSignUp = ({ onSubmit, onChange, email, password, repeatPassword }: Props) => {
+const AuthSignIn = ({ onSubmit, onChange, email, password }: Props) => {
   return (
     <div>
-      <FormHeading title="Sign Up" info="Already have an account?" link="/" linkText="Log in here." />
+      <FormHeading title="Sign In" info="Don't have an account?" link="/sign-up" linkText="Sign up now!" />
       <section className="form-box">
         <div>
           <form onSubmit={onSubmit}>
@@ -34,15 +33,6 @@ const FormSignUp = ({ onSubmit, onChange, email, password, repeatPassword }: Pro
               placeholder="Your Password"
               labelTitle="Password"
               IconInput={HiOutlineEye}
-            />
-            <FormInput
-              type="password"
-              name="repeatPassword"
-              value={repeatPassword}
-              onChange={onChange}
-              placeholder="Repeat Password"
-              labelTitle="Repeat Password"
-              IconInput={HiOutlineEye}
               isButtonSubmit={true}
             />
           </form>
@@ -51,4 +41,4 @@ const FormSignUp = ({ onSubmit, onChange, email, password, repeatPassword }: Pro
     </div>
   );
 };
-export default FormSignUp;
+export default AuthSignIn;

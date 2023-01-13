@@ -4,7 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
-import FormSignIn from '../components/UI/form/FormSignIn';
+import AuthSignIn from '../components/auth/AuthSignIn';
 import FormHeading from '../components/UI/form/FormHeading';
 
 const SignIn = () => {
@@ -72,7 +72,7 @@ const SignIn = () => {
     );
   }
 
-  return <FormSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />;
+  return <AuthSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />;
 };
 
 export default SignIn;

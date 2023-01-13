@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 
-import FormSignUp from '../components/UI/form/FormSignUp';
+import AuthSignUp from '../components/auth/AuthSignUp';
 
 const SignUp = () => {
   // Local state
@@ -32,7 +32,7 @@ const SignUp = () => {
 
   // Returns
   return (
-    <FormSignUp
+    <AuthSignUp
       onSubmit={onSubmit}
       onChange={onChange}
       email={email}
