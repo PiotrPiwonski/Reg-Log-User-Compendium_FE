@@ -7,9 +7,9 @@ interface Props {
   link: string;
   linkText: string;
 }
-const FormHeading = ({ title, info, link, linkText }: Props) => {
+const PageHeader = ({ title, info, link, linkText }: Props) => {
   return (
-    <section>
+    <header>
       <h1 className="section-title">{title}</h1>
       <p className="account-info">
         {info}{' '}
@@ -17,7 +17,7 @@ const FormHeading = ({ title, info, link, linkText }: Props) => {
           {linkText}
         </Link>
       </p>
-    </section>
+    </header>
   );
 };
-export default FormHeading;
+export default PageHeader;
