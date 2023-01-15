@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import { getUserWithCookie } from './context/auth/AuthActions';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthContext from './context/auth/AuthContext';
-import Login from './pages/Login';
+import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
 
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </Router>

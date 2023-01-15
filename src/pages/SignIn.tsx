@@ -1,13 +1,13 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
 import AuthContext from '../context/auth/AuthContext';
-import AuthForm from '../components/AuthForm';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
+import AuthSignIn from '../components/auth/AuthSignIn';
+import PageHeader from '../components/PageHeader';
 
-const Login = () => {
+const SignIn = () => {
   // Local state
   const [formData, setFormData] = useState({
     email: '',
@@ -73,23 +73,11 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <section>
-        <h1 className="section-title">Log in</h1>
-        <p className="account-info">
-          Don't have an account?{' '}
-          <Link to="/sign-up" className="sign-up account-info">
-            Sign up now!
-          </Link>
-        </p>
-      </section>
-      <section className="form-box">
-        <div>
-          <AuthForm onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
-        </div>
-      </section>
-    </div>
+    <>
+      <PageHeader title="Sign In" info="Don't have an account?" link="/sign-up" linkText="Sign up now!" />
+      <AuthSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
+    </>
   );
 };
 
-export default Login;
+export default SignIn;
