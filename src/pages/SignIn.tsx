@@ -5,7 +5,7 @@ import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
 import AuthSignIn from '../components/auth/AuthSignIn';
-import FormHeading from '../components/UI/form/FormHeading';
+import PageHeader from '../components/PageHeader';
 
 const SignIn = () => {
   // Local state
@@ -72,7 +72,12 @@ const SignIn = () => {
     );
   }
 
-  return <AuthSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />;
+  return (
+    <>
+      <PageHeader title="Sign In" info="Don't have an account?" link="/sign-up" linkText="Sign up now!" />
+      <AuthSignIn onSubmit={onSubmit} onChange={onChange} email={email} password={password} />
+    </>
+  );
 };
 
 export default SignIn;
