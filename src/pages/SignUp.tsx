@@ -4,6 +4,7 @@ import { PagesTitles } from '../config/pages-title';
 
 import AuthSignUp from '../components/auth/AuthSignUp';
 import PageHeader from '../components/PageHeader';
+import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 
 const SignUp = () => {
   // Local state
@@ -12,6 +13,7 @@ const SignUp = () => {
     password: '',
     repeatPassword: '',
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   useDocumentTitle(PagesTitles.SIGN_UP);
 
@@ -25,11 +27,68 @@ const SignUp = () => {
     }));
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODO Send to backend
     console.log(formData);
+
+    setLoading(true);
+    if (!email) {
+      alert('Email jest wymagany.');
+      setLoading(false);
+      return;
+    }
+    if (!password) {
+      alert('Hasło jest wymagane.');
+      setLoading(false);
+      return;
+    }
+    if (password.length < 6) {
+      alert('Hasło musi mieć przynajmniej 6 znaków.');
+      setLoading(false);
+      return;
+    }
+    if (password.length > 16) {
+      alert('Hasło musi mieć maksymalnie 16 znaków.');
+      setLoading(false);
+      return;
+    }
+    if (!repeatPassword) {
+      alert('Repeat Password jest wymagane.');
+      setLoading(false);
+      return;
+    }
+    if (repeatPassword !== password) {
+      alert('Hasło i jego powtórzenie musi być identyczne');
+      setLoading(false);
+      return;
+    } else {
+      try {
+        const res = await fetch('http://localhost:3001/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        const data = await res.json();
+        console.log(data);
+        alert(`Zarejstrowany użytkownik email: ${data.email} o id: ${data.id}`);
+      } catch (error) {
+        alert('Coś nie tak...');
+        console.log('Error: ', error);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
+
+  if (loading) {
+    return (
+      // <h1>Loading...</h1>
+      <LoadingSpinner />
+    );
+  }
 
   // Returns
   return (
