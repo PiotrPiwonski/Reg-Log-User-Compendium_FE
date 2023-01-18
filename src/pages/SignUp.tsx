@@ -72,7 +72,6 @@ const SignUp = () => {
           body: JSON.stringify(formData),
         });
         const data = await res.json();
-        // console.log(data);
         const errorMsg = data.message;
         if (res.status === 201) {
           alert(`Zarejstrowany użytkownik email: ${data.email} o id: ${data.id}`);
@@ -95,10 +94,7 @@ const SignUp = () => {
   };
 
   if (loading) {
-    return (
-      // <h1>Loading...</h1>
-      <LoadingSpinner />
-    );
+    return <LoadingSpinner />;
   }
 
   // Returns
