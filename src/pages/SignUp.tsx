@@ -72,8 +72,19 @@ const SignUp = () => {
           body: JSON.stringify(formData),
         });
         const data = await res.json();
-        console.log(data);
-        alert(`Zarejstrowany użytkownik email: ${data.email} o id: ${data.id}`);
+        // console.log(data);
+        const errorMsg = data.message;
+        if (res.status === 201) {
+          alert(`Zarejstrowany użytkownik email: ${data.email} o id: ${data.id}`);
+          return;
+        }
+        if (res.status === 400) {
+          alert(`Błąd podczas rejestracji nowego użytkownika: ${errorMsg}`);
+          return;
+        } else {
+          alert(`Jakiś inny błąd o statusie różnym od 400: ${res.status}`);
+          return;
+        }
       } catch (error) {
         alert('Coś nie tak...');
         console.log('Error: ', error);

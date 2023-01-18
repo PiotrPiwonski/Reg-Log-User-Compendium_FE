@@ -34,7 +34,7 @@ const SignIn = () => {
     dispatch({ type: 'SET_LOADING' });
 
     try {
-      const res = await fetch('http://localhost:3001/user/login', {
+      const res = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
