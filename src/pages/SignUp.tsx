@@ -30,8 +30,6 @@ const SignUp = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO Send to backend
-    console.log(formData);
 
     if (!email) {
       alert('Email jest wymagany.');
