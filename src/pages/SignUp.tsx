@@ -5,6 +5,7 @@ import { PagesTitles } from '../config/pages-title';
 import AuthSignUp from '../components/auth/AuthSignUp';
 import PageHeader from '../components/PageHeader';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
+import { UserRegisterRes } from 'types/backend';
 
 const SignUp = () => {
   // Local state
@@ -65,8 +66,8 @@ const SignUp = () => {
         },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      const errorMsg = data.message;
+      const data = (await res.json()) as UserRegisterRes;
+      const errorMsg = (await res.json()).message;
       if (res.status === 201) {
         alert(`Zarejestrowany użytkownik email: ${data.email} o id: ${data.id}`);
         return;
