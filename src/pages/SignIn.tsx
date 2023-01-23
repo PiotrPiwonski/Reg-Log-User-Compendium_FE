@@ -16,13 +16,6 @@ const SignIn = () => {
   });
   const { email, password } = formData;
 
-  //UseEffect
-  useEffect(() => () => {
-    if (authState.user) {
-      console.log(authState.user);
-      navigate('/logged-user');
-    }
-  });
   // Context
   const { state: authState, dispatch } = useContext(AuthContext);
 
@@ -30,6 +23,17 @@ const SignIn = () => {
 
   // Navigate
   const navigate = useNavigate();
+
+  //UseEffect
+  useEffect(
+    () => () => {
+      if (authState.user) {
+        console.log(authState.user);
+        navigate('/logged-user');
+      }
+    },
+    [authState.user, navigate],
+  );
 
   // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +78,6 @@ const SignIn = () => {
   }
 
   if (authState.user) {
-    console.log(authState.user);
     // return (
     //   <div>
     //     <h1>Witaj {authState.user.email}</h1>
