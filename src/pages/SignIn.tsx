@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import AuthContext from '../context/auth/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
@@ -16,6 +16,13 @@ const SignIn = () => {
   });
   const { email, password } = formData;
 
+  //UseEffect
+  useEffect(() => () => {
+    if (authState.user) {
+      console.log(authState.user);
+      navigate('/logged-user');
+    }
+  });
   // Context
   const { state: authState, dispatch } = useContext(AuthContext);
 
@@ -68,7 +75,6 @@ const SignIn = () => {
 
   if (authState.user) {
     console.log(authState.user);
-    navigate('/logged-user');
     // return (
     //   <div>
     //     <h1>Witaj {authState.user.email}</h1>
