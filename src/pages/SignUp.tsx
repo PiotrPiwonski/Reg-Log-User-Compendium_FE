@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useDocumentTitle from '../hooks/useDocumentTitle';
+import useForm from '../hooks/useForm';
 import { PagesTitles } from '../config/pages-title';
 
 import AuthSignUp from '../components/auth/AuthSignUp';
@@ -7,26 +8,25 @@ import PageHeader from '../components/PageHeader';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import { UserRegisterRes } from 'types/backend';
 
+type Form = {
+  email: string;
+  password: string;
+  password2: string;
+};
+
 const SignUp = () => {
   // Local state
-  const [formData, setFormData] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { form, tag, updateValue, errors, isError, submitForm } = useForm<Form>({
     email: '',
     password: '',
-    repeatPassword: '',
+    password2: '',
   });
-  const [loading, setLoading] = useState<boolean>(false);
 
   useDocumentTitle(PagesTitles.SIGN_UP);
 
-  const { email, password, repeatPassword } = formData;
-
   // Handlers
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,11 +94,11 @@ const SignUp = () => {
     <>
       <PageHeader title="Sign Up" info="Already have an account?" link="/" linkText="Log in here." />
       <AuthSignUp
-        onSubmit={onSubmit}
-        onChange={onChange}
-        email={email}
-        password={password}
-        repeatPassword={repeatPassword}
+        onSubmit={submitForm(onSubmit)}
+        onChange={updateValue}
+        email={form.email}
+        password={form.password}
+        repeatPassword={form.password2}
       />
     </>
   );
