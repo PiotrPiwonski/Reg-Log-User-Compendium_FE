@@ -4,6 +4,7 @@ import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 import { UserLoginRes } from 'types/backend';
+import { useNavigate } from 'react-router-dom';
 import AuthSignIn from '../components/auth/AuthSignIn';
 import PageHeader from '../components/PageHeader';
 
@@ -19,6 +20,9 @@ const SignIn = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
 
   useDocumentTitle(PagesTitles.SIGN_IN);
+
+  // Navigate
+  const navigate = useNavigate();
 
   // Handlers
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,13 +67,15 @@ const SignIn = () => {
   }
 
   if (authState.user) {
-    return (
-      <div>
-        <h1>Witaj {authState.user.email}</h1>
-        <p>Twoje ID: {authState.user.id}</p>
-        <p>Twoja rola: {authState.user.role}</p>
-      </div>
-    );
+    console.log(authState.user);
+    navigate('/logged-user');
+    // return (
+    //   <div>
+    //     <h1>Witaj {authState.user.email}</h1>
+    //     <p>Twoje ID: {authState.user.id}</p>
+    //     <p>Twoja rola: {authState.user.role}</p>
+    //   </div>
+    // );
   }
 
   return (

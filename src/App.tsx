@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthContext from './context/auth/AuthContext';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import { LoggedUser } from './pages/LoggedUser';
 import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/logged-user" element={<LoggedUser />} />
       </Routes>
     </Router>
   );
