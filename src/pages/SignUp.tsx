@@ -1,60 +1,44 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import useForm from '../hooks/useForm';
+import TextInfoModal from '../components/TextInfoModal';
+import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
+import { HiOutlineUserCircle, HiOutlineEye } from 'react-icons/hi';
+import { MdArrowForwardIos } from 'react-icons/md';
 import { PagesTitles } from '../config/pages-title';
 
-import AuthSignUp from '../components/auth/AuthSignUp';
-import PageHeader from '../components/PageHeader';
-import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
-import { UserRegisterRes } from 'types/backend';
-
-type Form = {
+type SignUpForm = {
   email: string;
   password: string;
   password2: string;
 };
 
 const SignUp = () => {
-  // Local state
+  // Local state and hooks
   const [loading, setLoading] = useState<boolean>(false);
-
-  const { form, tag, updateValue, errors, isError, submitForm } = useForm<Form>({
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [modalText, setModalText] = useState<string>('');
+  const [modalLink, setModalLink] = useState<string>('');
+  const { form, tag, updateValue, errors, submitForm } = useForm<SignUpForm>({
     email: '',
     password: '',
     password2: '',
   });
+  const navigate = useNavigate();
 
+  // Set page title
   useDocumentTitle(PagesTitles.SIGN_UP);
 
   // Handlers
+  const openModal = (text: string) => {
+    setModalText(text);
+    setModalVisible(true);
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!email) {
-      alert('Email jest wymagany.');
-      return;
-    }
-    if (!password) {
-      alert('Hasło jest wymagane.');
-      return;
-    }
-    if (password.length < 6) {
-      alert('Hasło musi mieć przynajmniej 6 znaków.');
-      return;
-    }
-    if (password.length > 16) {
-      alert('Hasło musi mieć maksymalnie 16 znaków.');
-      return;
-    }
-    if (!repeatPassword) {
-      alert('Repeat Password jest wymagane.');
-      return;
-    }
-    if (repeatPassword !== password) {
-      alert('Hasło i jego powtórzenie musi być identyczne');
-      return;
-    }
     setLoading(true);
     try {
       const res = await fetch('http://localhost:3001/auth/register', {
@@ -62,24 +46,37 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(form),
       });
-      const data = (await res.json()) as UserRegisterRes;
-      const errorMsg = (await res.json()).message;
+
       if (res.status === 201) {
-        alert(`Zarejestrowany użytkownik email: ${data.email} o id: ${data.id}`);
-        return;
-      }
-      if (res.status === 400) {
-        alert(`Błąd podczas rejestracji nowego użytkownika: ${errorMsg}`);
+        setModalLink('/');
+        openModal(
+          'Registration successful! Auto redirecting to sign in page in 10 seconds or click OK to redirect now.',
+        );
+
+        let time = 10;
+        const interval = setInterval(() => {
+          time--;
+          setModalText(
+            `Registration successful! Auto redirecting to sign in page in ${time} seconds or click OK to redirect now.`,
+          );
+
+          if (time < 0) {
+            clearInterval(interval);
+            navigate('/');
+          }
+        }, 1000);
+
         return;
       } else {
-        alert(`Jakiś inny błąd o statusie różnym od 400: ${res.status}`);
+        const errorMsg = (await res.json()).message;
+        openModal(`Error registering new user: ${errorMsg}`);
         return;
       }
     } catch (error) {
-      alert('Coś nie tak...');
-      console.log('Error: ', error);
+      openModal('Unknown error occurred. Logging to console.');
+      console.log('Unknown error occurred: ', error);
     } finally {
       setLoading(false);
     }
@@ -92,14 +89,78 @@ const SignUp = () => {
   // Returns
   return (
     <>
-      <PageHeader title="Sign Up" info="Already have an account?" link="/" linkText="Log in here." />
-      <AuthSignUp
-        onSubmit={submitForm(onSubmit)}
-        onChange={updateValue}
-        email={form.email}
-        password={form.password}
-        repeatPassword={form.password2}
-      />
+      <TextInfoModal modalText={modalText} modalVisible={modalVisible} linkPath={modalLink} />
+      <h1 className="section-title">Sign Up</h1>
+      <p className="account-info">
+        Already have an account?{' '}
+        <Link to="/" className="sign-up account-info">
+          Log in here.
+        </Link>
+      </p>
+      <section className="form-box">
+        <form onSubmit={submitForm(onSubmit)}>
+          <div className="input-box">
+            <label htmlFor="email">Email</label>
+            <div className="input-panel">
+              <HiOutlineUserCircle className="input-icon" />
+              <input
+                {...tag('email', { email: true }, 'Has to be email format')}
+                type="email"
+                value={form.email}
+                onChange={updateValue}
+                placeholder="Email"
+              />
+              {errors.email && <div className="input-errors">{errors.email}</div>}
+            </div>
+          </div>
+
+          <div className="input-box">
+            <label htmlFor="password">Password</label>
+            <div className="input-panel">
+              <HiOutlineEye className="input-icon" />
+              <input
+                {...tag(
+                  'password',
+                  {
+                    minLength: 4,
+                    maxLength: 20,
+                  },
+                  'Password has to be between 4 and 20 characters long',
+                )}
+                type="password"
+                value={form.password}
+                onChange={updateValue}
+                placeholder="Password"
+              />
+              {errors.password && <div className="input-errors">{errors.password}</div>}
+            </div>
+          </div>
+
+          <div className="input-box">
+            <label htmlFor="password2">Repeat Password</label>
+            <div className="input-panel">
+              <HiOutlineEye className="input-icon" />
+              <input
+                {...tag(
+                  'password2',
+                  {
+                    equalTo: form.password,
+                  },
+                  'Passwords do not match',
+                )}
+                type="password"
+                value={form.password2}
+                onChange={updateValue}
+                placeholder="Repeat Password"
+              />
+              {errors.password2 && <div className="input-errors">{errors.password2}</div>}
+              <button type="submit">
+                <MdArrowForwardIos className="arrow-icon" />
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
     </>
   );
 };
