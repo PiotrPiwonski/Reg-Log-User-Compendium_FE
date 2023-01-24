@@ -16,12 +16,15 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
   const [isError, setIsError] = useState(false);
   const [errors, setErrors] = useState<Record<keyof T, string | null>>(setInitialErrors(initialFormState));
   const [form, setForm] = useState<T>(initialFormState);
-  const [formValidators, setFormValidators] = useState<Record<string, Validators>>({});
+
+  const formValidators: Record<string, Validators> = {};
+  const errorMessages: Record<string, string> = {};
 
   // Function that adds validators to the given form field and returns html tags
-  const tag = (name: string, validators: Validators) => {
-    if (!formValidators[name]) {
-      setFormValidators((prev) => ({ ...prev, [name]: validators }));
+  const tag = (name: string, validators: Validators, errorMessage?: string) => {
+    formValidators[name] = validators;
+    if (errorMessage) {
+      errorMessages[name] = errorMessage;
     }
 
     return {
@@ -39,12 +42,10 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
 
     // Validate field on the fly while user writes text
     if (formValidators[name]) {
-      const validateMessage = validate(value, formValidators[name]);
+      const defaultMessage = validate(value, formValidators[name]);
 
-      if (validateMessage) {
-        setErrors((prev) => {
-          return { ...prev, [name]: validateMessage };
-        });
+      if (defaultMessage) {
+        setErrors((prev) => ({ ...prev, [name]: errorMessages?.[name] ?? defaultMessage }));
       } else {
         setErrors((prev) => {
           const newErrors = { ...prev };
@@ -63,10 +64,10 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
     // Check for errors on the form
     for (const name of Object.keys(form)) {
       if (formValidators[name]) {
-        const validateMessage = validate(form[name], formValidators[name]);
+        const defaultMessage = validate(form[name], formValidators[name]);
 
-        if (validateMessage) {
-          setErrors((prev) => ({ ...prev, [name]: validateMessage }));
+        if (defaultMessage) {
+          setErrors((prev) => ({ ...prev, [name]: errorMessages?.[name] ?? defaultMessage }));
           error = true;
         } else {
           setErrors((prev) => {
