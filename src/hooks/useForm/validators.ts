@@ -3,12 +3,11 @@ export interface Validators {
   minLength?: number;
   maxLength?: number;
   email?: boolean;
-  includes?: {
-    upperCase?: boolean;
-    lowerCase?: boolean;
-    specialCharacter?: boolean;
-    number?: boolean;
-  };
+  equalTo?: string;
+  hasUpperCaseLetter?: boolean;
+  hasLowerCaseLetter?: boolean;
+  hasSpecialCharacters?: boolean;
+  hasDigitCharacters?: boolean;
 }
 
 const required = (text: string) => {
@@ -24,66 +23,92 @@ const maxLength = (text: string, maxLength: number) => {
 };
 
 const isEmail = (text: string) => {
-  const splitted = text.split('@');
-  if (splitted.length !== 2) return false;
+  // const splitted = text.split('@');
+  // if (splitted.length !== 2) return false;
 
-  if (splitted[0].trim().length < 1 || splitted[1].trim().length < 1) {
-    return false;
-  }
+  // if (splitted[0].trim().length < 1 || splitted[1].trim().length < 1) {
+  //   return false;
+  // }
 
-  return true;
+  return /.+@.+\..+/.test(text);
 };
 
-// TODO:
-const doesContainUpperCase = (text: string) => {
-  for (const letter of text) {
-    if (letter === letter.toLocaleUpperCase()) {
-      return true;
-    }
-  }
-
-  return false;
+const isEqualTo = (text: string, text2: string) => {
+  return text === text2;
 };
 
-// TODO:
-const doesContainLowerCase = (text: string) => {
-  for (const letter of text) {
-    if (letter === letter.toLocaleLowerCase()) {
-      return true;
-    }
-  }
-
-  return false;
+const hasUpperCaseLetter = (text: string) => {
+  return new RegExp(/[A-Z]/).test(text);
+};
+const hasLowerCaseLetter = (text: string) => {
+  return new RegExp(/[a-z]/).test(text);
+};
+const hasSpecialCharacters = (text: string) => {
+  return new RegExp(/[~`!@#$%^&*()_\-+={[}\]|:;"'<,>.?/]/).test(text);
+};
+const hasDigitCharacters = (text: string) => {
+  return new RegExp(/[0-9]/).test(text);
 };
 
 export const validate = (text: string, validators: Validators): string | null => {
-  for (const key of Object.keys(validators)) {
-    if (!Array.isArray(key)) {
-      switch (key) {
-        case 'required':
-          if (!required(text)) {
-            return 'Has to be filled in.';
-          }
-          break;
-        case 'minLength':
-          if (!minLength(text, validators.minLength!)) {
-            return `Has to be longer than ${validators.minLength! - 1} characters.`;
-          }
-          break;
-        case 'maxLength':
-          if (!maxLength(text, validators.maxLength!)) {
-            return `Has to be not longer than ${validators.maxLength!} characters.`;
-          }
-          break;
-        case 'email':
-          if (!isEmail(text)) {
-            return 'Has to be email format.';
-          }
-          break;
-        default:
-          break;
-      }
-    } else {
+  for (const key of Object.keys(validators) as (keyof Validators)[]) {
+    switch (key) {
+      case 'required':
+        if (!required(text)) {
+          return 'Has to be filled in.';
+        }
+        break;
+
+      case 'minLength':
+        if (!minLength(text, validators.minLength!)) {
+          return `Has to be longer than ${validators.minLength! - 1} characters.`;
+        }
+        break;
+
+      case 'maxLength':
+        if (!maxLength(text, validators.maxLength!)) {
+          return `Has to be not longer than ${validators.maxLength!} characters.`;
+        }
+        break;
+
+      case 'email':
+        if (!isEmail(text)) {
+          return 'Has to be email format.';
+        }
+        break;
+
+      case 'equalTo':
+        if (!isEqualTo(text, validators.equalTo!)) {
+          return `Has to be equal to: ${validators.equalTo!}`;
+        }
+        break;
+
+      case 'hasDigitCharacters':
+        if (!hasDigitCharacters(text)) {
+          return `Has to have at least one digit character.`;
+        }
+        break;
+
+      case 'hasLowerCaseLetter':
+        if (!hasLowerCaseLetter(text)) {
+          return `Has to have at least one lowercase letter.`;
+        }
+        break;
+
+      case 'hasSpecialCharacters':
+        if (!hasSpecialCharacters(text)) {
+          return `Has to have at least one special character.`;
+        }
+        break;
+
+      case 'hasUpperCaseLetter':
+        if (!hasUpperCaseLetter(text)) {
+          return `Has to have at least one uppercase letter.`;
+        }
+        break;
+
+      default:
+        break;
     }
   }
 
