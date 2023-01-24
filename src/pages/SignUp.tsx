@@ -50,6 +50,7 @@ const SignUp = () => {
       });
 
       if (res.status === 201) {
+        // User created
         setModalLink('/');
         openModal(
           'Registration successful! Auto redirecting to sign in page in 10 seconds or click OK to redirect now.',
@@ -70,11 +71,13 @@ const SignUp = () => {
 
         return;
       } else {
+        // User not created
         const errorMsg = (await res.json()).message;
         openModal(`Error registering new user: ${errorMsg}`);
         return;
       }
     } catch (error) {
+      // Error fetching response
       openModal('Unknown error occurred. Logging to console.');
       console.log('Unknown error occurred: ', error);
     } finally {
