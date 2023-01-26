@@ -49,7 +49,7 @@ const SignIn = () => {
       } else if (res.status === 401) {
         alert('Błędny email lub hasło.');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       alert('Coś poszło nie tak...');
       console.log('Error: ', error);
     } finally {

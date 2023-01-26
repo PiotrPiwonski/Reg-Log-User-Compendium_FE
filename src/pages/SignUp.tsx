@@ -76,7 +76,7 @@ const SignUp = () => {
         openModal(`Error registering new user: ${errorMsg}`);
         return;
       }
-    } catch (error) {
+    } catch (error: unknown) {
       // Error fetching response
       openModal('Unknown error occurred. Logging to console.');
       console.log('Unknown error occurred: ', error);
