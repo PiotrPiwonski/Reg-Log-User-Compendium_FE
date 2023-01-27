@@ -21,15 +21,15 @@ const SignIn = () => {
   useDocumentTitle(PagesTitles.SIGN_IN);
 
   // Handlers
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [event.target.name]: event.target.value,
     }));
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     dispatch({ type: 'SET_LOADING' });
 
@@ -49,7 +49,7 @@ const SignIn = () => {
       } else if (res.status === 401) {
         alert('Błędny email lub hasło.');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       alert('Coś poszło nie tak...');
       console.log('Error: ', error);
     } finally {

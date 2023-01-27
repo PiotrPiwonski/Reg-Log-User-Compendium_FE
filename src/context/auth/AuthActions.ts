@@ -13,8 +13,8 @@ export const getUserWithCookie = async () => {
 
     const data = await res.json();
 
-    return data.user as UserLoginRes;
-  } catch (error) {
+    return data as UserLoginRes;
+  } catch (error: unknown) {
     console.log('Error auto logging user with cookie: ', error);
     return null;
   }
