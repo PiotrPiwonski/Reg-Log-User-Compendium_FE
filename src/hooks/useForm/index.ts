@@ -33,7 +33,6 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
     };
   };
 
-  // Update form value from user input
   const updateValue = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
