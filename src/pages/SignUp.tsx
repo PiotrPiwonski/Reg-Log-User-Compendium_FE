@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import useForm from '../hooks/useForm';
 import TextInfoModal from '../components/TextInfoModal';
@@ -25,7 +25,6 @@ const SignUp = () => {
     password: '',
     password2: '',
   });
-  const navigate = useNavigate();
 
   // Set page title
   useDocumentTitle(PagesTitles.SIGN_UP);
@@ -34,6 +33,10 @@ const SignUp = () => {
   const openModal = (text: string) => {
     setModalText(text);
     setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -50,34 +53,15 @@ const SignUp = () => {
       });
 
       if (res.status === 201) {
-        // User created
         setModalLink('/');
-        openModal(
-          'Registration successful! Auto redirecting to sign in page in 10 seconds or click OK to redirect now.',
-        );
-
-        let time = 10;
-        const interval = setInterval(() => {
-          time--;
-          setModalText(
-            `Registration successful! Auto redirecting to sign in page in ${time} seconds or click OK to redirect now.`,
-          );
-
-          if (time < 0) {
-            clearInterval(interval);
-            navigate('/');
-          }
-        }, 1000);
-
+        openModal('Registration successful! Please click OK to log in.');
         return;
       } else {
-        // User not created
-        const errorMsg = (await res.json()).message;
+        const errorMsg = String((await res.json()).message);
         openModal(`Error registering new user: ${errorMsg}`);
         return;
       }
     } catch (error: unknown) {
-      // Error fetching response
       openModal('Unknown error occurred. Logging to console.');
       console.log('Unknown error occurred: ', error);
     } finally {
@@ -92,7 +76,7 @@ const SignUp = () => {
   // Returns
   return (
     <>
-      <TextInfoModal modalText={modalText} modalVisible={modalVisible} linkPath={modalLink} />
+      <TextInfoModal modalVisible={modalVisible} modalText={modalText} linkPath={modalLink} closeModal={closeModal} />
       <h1 className="section-title">Sign Up</h1>
       <p className="account-info">
         Already have an account?{' '}
