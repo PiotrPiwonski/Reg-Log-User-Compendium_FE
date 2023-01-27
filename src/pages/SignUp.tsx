@@ -36,8 +36,8 @@ const SignUp = () => {
     setModalVisible(true);
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     setLoading(true);
     try {

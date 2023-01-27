@@ -3,8 +3,8 @@ import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
 import FormBox from '../UI/form/FormBox';
 
 interface Props {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   email: string;
   password: string;
 }

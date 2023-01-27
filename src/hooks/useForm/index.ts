@@ -33,9 +33,9 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
     };
   };
 
-  const updateValue = (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const updateValue = (event: ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
     setForm((prev) => ({ ...prev, [name]: value }));
 
@@ -55,8 +55,8 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
     }
   };
 
-  const submitForm = (userSubmit: FormEventHandler<HTMLFormElement>) => (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submitForm = (userSubmit: FormEventHandler<HTMLFormElement>) => (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     let error = false;
 
@@ -82,7 +82,7 @@ const useForm = <T extends Record<string, string>>(initialFormState: T) => {
       setIsError(true);
     } else {
       setIsError(false);
-      userSubmit(e);
+      userSubmit(event);
     }
   };
 
