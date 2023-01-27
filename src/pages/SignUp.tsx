@@ -107,7 +107,7 @@ const SignUp = () => {
             <div className="input-panel">
               <HiOutlineUserCircle className="input-icon" />
               <input
-                {...tag('email', { email: true }, 'Has to be email format')}
+                {...tag('email', { required: true, email: true })}
                 type="email"
                 value={form.email}
                 onChange={updateValue}
@@ -124,10 +124,7 @@ const SignUp = () => {
               <input
                 {...tag(
                   'password',
-                  {
-                    minLength: 4,
-                    maxLength: 20,
-                  },
+                  { minLength: 4, maxLength: 20 },
                   'Password has to be between 4 and 20 characters long',
                 )}
                 type="password"
@@ -144,13 +141,7 @@ const SignUp = () => {
             <div className="input-panel">
               <HiOutlineEye className="input-icon" />
               <input
-                {...tag(
-                  'password2',
-                  {
-                    equalTo: form.password,
-                  },
-                  'Passwords do not match',
-                )}
+                {...tag('password2', { equalTo: form.password }, 'Passwords do not match')}
                 type="password"
                 value={form.password2}
                 onChange={updateValue}
