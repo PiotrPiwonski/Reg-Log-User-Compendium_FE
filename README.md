@@ -1,3 +1,6 @@
+TBD
+
+
 ### Utworzenie pliku konfiguracyjnego dla wygodnego pobierania typów z frontendu i backendu
 
 1. Utworzyć w folderze głównym plik o nazwie `tsconfig.paths.json`
