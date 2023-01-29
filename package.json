@@ -2,6 +2,7 @@
   "name": "reg-log-user-compendium_fe",
   "version": "0.1.0",
   "private": false,
+  "homepage": "https://PiotrPiwonski.github.io/Reg-Log-User-Compendium_FE",
   "engines": {
     "node": "18.12.1"
   },
