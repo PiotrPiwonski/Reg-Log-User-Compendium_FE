@@ -1,4 +1,6 @@
-TBD
+TBD 
+
+trigger CI change
 
 
 ### Utworzenie pliku konfiguracyjnego dla wygodnego pobierania typów z frontendu i backendu
