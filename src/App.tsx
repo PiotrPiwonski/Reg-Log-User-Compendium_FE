@@ -28,12 +28,14 @@ const App = () => {
   if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-      </Routes>
-    </Router>
+    <div data-testid="sign-in-test">
+      <Router>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 
