@@ -1,12 +1,16 @@
 {
   "name": "reg-log-user-compendium_fe",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "engines": {
+    "node": "18.12.1",
+    "npm": "not-supported"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test-coverage": "npm test -- --coverage",
+    "test": "react-scripts test --no-cache --runInBand --verbose --watchAll=false",
+    "test-coverage": "yarn test -- --coverage",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,html,json}\"",
     "prepare": "husky install"
@@ -31,7 +35,12 @@
     "@types/react-dom": "^18.0.9",
     "@types/react-icons": "^3.0.0",
     "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
     "customize-cra": "^1.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1"
