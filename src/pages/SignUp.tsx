@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
+import { MdArrowForwardIos } from 'react-icons/md';
+
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import useForm from '../hooks/useForm';
 import TextInfoModal from '../components/TextInfoModal';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
-import { HiOutlineUserCircle, HiOutlineEye } from 'react-icons/hi';
-import { MdArrowForwardIos } from 'react-icons/md';
 import { PagesTitles } from '../config/pages-title';
 
 type SignUpForm = {

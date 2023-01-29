@@ -2,7 +2,6 @@
   "name": "reg-log-user-compendium_fe",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://PiotrPiwonski.github.io/Reg-Log-User-Compendium_FE",
   "engines": {
     "node": "18.12.1"
   },
@@ -10,9 +9,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --no-cache --runInBand --verbose --watchAll=false",
-    "test-coverage": "npm test -- --coverage",
-    "eject": "react-scripts eject",
+    "test:watch": "react-scripts test --no-cache --runInBand --verbose --watchAll=true",
+    "test:coverage": "npm test -- --coverage",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,html,json}\"",
+    "lint": "npm run lint:js && npm run lint:types && npm run check:circular-deps && npm run lint:prettier",
+    "lint:js": "eslint --ext ts,tsx .",
+    "lint:types": "tsc --noEmit",
+    "lint:prettier": "prettier --check src",
+    "check:circular-deps": "madge --circular src",
+    "eject": "react-scripts eject",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -40,9 +45,12 @@
     "customize-cra": "^1.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-css": "^0.6.0",
+    "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
+    "madge": "^6.0.0",
     "prettier": "^2.8.1"
   },
   "eslintConfig": {
@@ -64,7 +72,10 @@
     ]
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx,css,html,json}": "npm run format"
+    "**/.{ts,tsx,js,jsx,css,html,json}": [
+      "npm run format",
+      "npm run lint"
+    ]
   },
   "jest": {
     "moduleNameMapper": {

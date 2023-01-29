@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const useDocumentTitle = (title: string, prevailOnUnmount = true) => {
   const defaultTitle = useRef(document.title);

@@ -1,6 +1,14 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+# check types globally
+npm lint:types
 
+# run linters for changed files
+npm lint-staged
+
+# check global circular-deps
+npm check:circular-deps
+
+# run all tests
 npm test

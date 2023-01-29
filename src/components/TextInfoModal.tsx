@@ -12,7 +12,10 @@ const TextInfoModal: React.FC<Props> = ({ modalVisible, modalText, linkPath, clo
 
   return (
     <>
+      {/* TODO  find and replace with semantic html - avoid nested divs*/}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div className="text-modal-container" onClick={closeModal}>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
         <div className="text-modal-box" onClick={(e) => e.stopPropagation()}>
           <div className="text-modal-text">{modalText}</div>
           {linkPath ? (

@@ -1,11 +1,12 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
+import { UserLoginRes } from 'types/backend';
+
 import AuthContext from '../context/auth/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
-import useDocumentTitle from '../hooks/useDocumentTitle';
-import { PagesTitles } from '../config/pages-title';
-import { UserLoginRes } from 'types/backend';
 import AuthSignIn from '../components/auth/AuthSignIn';
 import PageHeader from '../components/PageHeader';
+import useDocumentTitle from '../hooks/useDocumentTitle';
+import { PagesTitles } from '../config/pages-title';
 
 const SignIn = () => {
   // Local state

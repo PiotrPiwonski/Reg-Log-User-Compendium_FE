@@ -1,6 +1,7 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
 import { getUserWithCookie } from './context/auth/AuthActions';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthContext from './context/auth/AuthContext';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';

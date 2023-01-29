@@ -1,8 +1,9 @@
 import { IconType } from 'react-icons/lib';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { ChangeEvent } from 'react';
 
 interface Props {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   name: string;
   type: string;
   placeholder: string;

@@ -14,12 +14,12 @@ const required = (text: string) => {
   return text.trim().length > 0;
 };
 
-const minLength = (text: string, minLength: number) => {
-  return text.length >= minLength;
+const minLength = (text: string, minimumLength: number) => {
+  return text.length >= minimumLength;
 };
 
-const maxLength = (text: string, maxLength: number) => {
-  return text.length <= maxLength;
+const maxLength = (text: string, maximumLength: number) => {
+  return text.length <= maximumLength;
 };
 
 const isEmail = (text: string) => {
