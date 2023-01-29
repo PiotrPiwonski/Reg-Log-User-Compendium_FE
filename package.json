@@ -3,14 +3,13 @@
   "version": "0.1.0",
   "private": false,
   "engines": {
-    "node": "18.12.1",
-    "npm": "not-supported"
+    "node": "18.12.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --no-cache --runInBand --verbose --watchAll=false",
-    "test-coverage": "yarn test -- --coverage",
+    "test-coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,css,html,json}\"",
     "prepare": "husky install"
