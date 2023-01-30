@@ -57,5 +57,6 @@ module.exports = {
         exclude: ['types/frontend'],
       },
     },
+    'import/ignore': ['.css$'],
   },
 };

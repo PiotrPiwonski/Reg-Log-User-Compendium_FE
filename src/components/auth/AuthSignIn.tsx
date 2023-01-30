@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
 
-import FormInput from '../UI/form/FormInput';
-import FormBox from '../UI/form/FormBox';
+import FormInput from '../form/FormInput';
+import FormBox from '../form/FormBox';
 
 interface Props {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;

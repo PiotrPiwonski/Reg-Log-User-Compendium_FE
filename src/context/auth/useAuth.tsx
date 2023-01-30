@@ -1,12 +1,12 @@
 import { useContext, useEffect } from 'react';
 
-import AuthContext, { AuthProvider } from './context/auth/AuthContext';
-import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
-import { AppRoutes } from './routes/Routes';
-import { getUserWithCookie } from './context/auth/AuthActions';
+import { getUserWithCookie } from './AuthActions';
+import AuthContext from './AuthContext';
 
-export const App = () => {
+export const useAuth = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
+
+  const { isLoading } = authState;
 
   useEffect(() => {
     (async () => {
@@ -24,11 +24,8 @@ export const App = () => {
     })();
   }, [dispatch]);
 
-  if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
-
-  return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
-  );
+  return {
+    authState,
+    isLoading,
+  };
 };

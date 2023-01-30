@@ -5,7 +5,7 @@ import { MdArrowForwardIos } from 'react-icons/md';
 
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import useForm from '../hooks/useForm';
-import TextInfoModal from '../components/TextInfoModal';
+import TextInfoModal from '../components/TextInfoModal/TextInfoModal';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import { PagesTitles } from '../config/pages-title';
 

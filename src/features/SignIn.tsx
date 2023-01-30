@@ -4,7 +4,7 @@ import { UserLoginRes } from 'types/backend';
 import AuthContext from '../context/auth/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinners/LoadingSpinner';
 import AuthSignIn from '../components/auth/AuthSignIn';
-import PageHeader from '../components/PageHeader';
+import { PageHeader } from '../components/PageHeader';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 import { PagesTitles } from '../config/pages-title';
 
