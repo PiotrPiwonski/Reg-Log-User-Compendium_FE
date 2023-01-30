@@ -2,8 +2,14 @@ import React, { FC, PropsWithChildren, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { TranslationProvider } from '../services/translation/TranslationProvider';
+
 const Providers: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  return <Router>{children}</Router>;
+  return (
+    <TranslationProvider>
+      <Router>{children}</Router>
+    </TranslationProvider>
+  );
 };
 
 const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>

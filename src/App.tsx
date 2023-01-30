@@ -4,6 +4,7 @@ import AuthContext, { AuthProvider } from './context/auth/AuthContext';
 import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
 import { AppRoutes } from './routes/Routes';
 import { getUserWithCookie } from './context/auth/AuthActions';
+import { TranslationProvider } from './services/translation/TranslationProvider';
 
 export const App = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
@@ -27,8 +28,10 @@ export const App = () => {
   if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
+    <TranslationProvider>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </TranslationProvider>
   );
 };

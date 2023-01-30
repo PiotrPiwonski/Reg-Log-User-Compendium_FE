@@ -6,7 +6,7 @@ interface Props {
 }
 
 const LoadingSpinner: FC<Props> = ({ isLoadingPage = false }) => (
-  <div className={isLoadingPage ? 'page-backdrop' : 'component-backdrop'}>
+  <div data-testid="loader" className={isLoadingPage ? 'page-backdrop' : 'component-backdrop'}>
     <div className={`dark-loader-style ${isLoadingPage ? 'page-loader' : 'component-loader'}`}></div>
   </div>
 );

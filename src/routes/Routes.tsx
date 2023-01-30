@@ -2,9 +2,9 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import { routes } from './routesMap';
 
-import SignIn from '../features/SignIn';
-import SignUp from '../features/SignUp';
+import SignUp from '../features/SignUp/SignUp';
 import { Home } from '../features/Home';
+import { SignIn } from '../features/SignIn';
 
 export const AppRoutes = () => {
   return (
