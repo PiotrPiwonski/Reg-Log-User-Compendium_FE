@@ -28,10 +28,10 @@ export const App = () => {
   if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
-    <TranslationProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <TranslationProvider>
         <AppRoutes />
-      </AuthProvider>
-    </TranslationProvider>
+      </TranslationProvider>
+    </AuthProvider>
   );
 };
