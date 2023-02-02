@@ -1,0 +1,15 @@
+{
+    "detectiveOptions": {
+      "ts": {
+        "skipTypeImports": true
+      }
+    },
+    "baseDir": "./src",
+    "fileExtensions": [
+      "ts", "tsx"
+    ],
+    "excludeRegExp": [
+      "^.*__tests__.*$"
+    ],
+    "tsConfig": "tsconfig.json"
+  }

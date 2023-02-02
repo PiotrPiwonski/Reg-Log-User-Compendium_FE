@@ -1,4 +1,4 @@
-import { AuthState, AuthActions } from 'types/frontend';
+import { AuthActions, AuthState } from 'types/frontend';
 
 const authReducer = (state: AuthState, action: AuthActions): AuthState => {
   switch (action.type) {

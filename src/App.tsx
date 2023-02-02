@@ -1,12 +1,12 @@
-import { useEffect, useContext } from 'react';
-import { getUserWithCookie } from './context/auth/AuthActions';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AuthContext from './context/auth/AuthContext';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
+import { useContext, useEffect } from 'react';
 
-const App = () => {
+import AuthContext, { AuthProvider } from './context/auth/AuthContext';
+import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
+import { AppRoutes } from './routes/Routes';
+import { getUserWithCookie } from './context/auth/AuthActions';
+import { TranslationProvider } from './services/translation/TranslationProvider';
+
+export const App = () => {
   const { state: authState, dispatch } = useContext(AuthContext);
 
   useEffect(() => {
@@ -28,13 +28,10 @@ const App = () => {
   if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <TranslationProvider>
+        <AppRoutes />
+      </TranslationProvider>
+    </AuthProvider>
   );
 };
-
-export default App;
