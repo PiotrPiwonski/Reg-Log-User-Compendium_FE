@@ -8,5 +8,6 @@ describe('LoggedInUser', () => {
     const component = screen.getByText('Test LoggedInUser');
     console.log(component);
     expect(component).toBeInTheDocument();
+    screen.getByRole('heading');
   });
 });
