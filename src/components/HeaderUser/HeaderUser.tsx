@@ -3,6 +3,7 @@ import { HeaderUserProps } from './types';
 export const HeaderUser = ({ id, email, role }: HeaderUserProps) => {
   return (
     <header
+      data-testid="header-user-test"
       style={{
         width: '100%',
         display: 'flex',
@@ -11,8 +12,7 @@ export const HeaderUser = ({ id, email, role }: HeaderUserProps) => {
       }}
     >
       <div>
-        {/*<img src="../../../public/icon_640.png" alt="avatar" />*/}
-        <img src="./icon_640.png" alt="Avatar" style={{ width: '50px' }} />
+        <img src="/icon_640.png" alt="Avatar" style={{ width: '50px' }} />
       </div>
       <div>
         <div>

@@ -1,13 +1,6 @@
-// import styles from './LoggedInUser.module.css';
-// import { UserRole } from 'types/backend';
+import { UserRole } from './types';
 
 import { HeaderUser } from '../../components/HeaderUser';
-
-enum UserRole {
-  User = 1,
-  Senior = 2,
-  Admin = 3,
-}
 
 const user = {
   email: 'a@b.c',
