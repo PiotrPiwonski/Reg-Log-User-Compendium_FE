@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useIntl } from 'react-intl';
