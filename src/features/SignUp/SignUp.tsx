@@ -2,12 +2,17 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useIntl } from 'react-intl';
+
+import { messages } from './messages';
 
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import useForm from '../../hooks/useForm';
 import TextInfoModal from '../../components/TextInfoModal/TextInfoModal';
 import LoadingSpinner from '../../components/LoadingSpinners/LoadingSpinner';
 import { PagesTitles } from '../../config/pages-title';
+import { routes } from '../../routes/routesMap';
+import { PageHeader } from '../../components/PageHeader';
 
 type SignUpForm = {
   email: string;
@@ -16,6 +21,7 @@ type SignUpForm = {
 };
 
 const SignUp = () => {
+  const { formatMessage } = useIntl();
   // Local state and hooks
   const [loading, setLoading] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -78,13 +84,12 @@ const SignUp = () => {
   return (
     <>
       <TextInfoModal modalVisible={modalVisible} modalText={modalText} linkPath={modalLink} closeModal={closeModal} />
-      <h1 className="section-title">Sign Up</h1>
-      <p className="account-info">
-        Already have an account?{' '}
-        <Link to="/" className="sign-up account-info">
-          Log in here.
-        </Link>
-      </p>
+      <PageHeader
+        title={formatMessage(messages.pageHeader.title)}
+        info={formatMessage(messages.pageHeader.info)}
+        link={routes.signIn}
+        linkText={formatMessage(messages.pageHeader.linkText)}
+      />
       <section className="form-box">
         <form onSubmit={submitForm(onSubmit)}>
           <div className="input-box">

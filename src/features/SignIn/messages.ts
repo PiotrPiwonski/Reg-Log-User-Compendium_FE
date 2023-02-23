@@ -19,7 +19,7 @@ export const messages = {
     },
     info: {
       id: 'info',
-      defaultMessage: 'Dont have an account?',
+      defaultMessage: 'Dont have an account? ',
     },
     linkText: {
       id: 'linkText',
