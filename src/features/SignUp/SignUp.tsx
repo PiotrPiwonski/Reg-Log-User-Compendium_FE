@@ -12,6 +12,8 @@ import LoadingSpinner from '../../components/LoadingSpinners/LoadingSpinner';
 import { PagesTitles } from '../../config/pages-title';
 import { routes } from '../../routes/routesMap';
 import { PageHeader } from '../../components/PageHeader';
+import { FormBox } from '../../components/form/FormBox';
+import styles from '../../components/form/FormInput/FormInput.module.css';
 
 type SignUpForm = {
   email: string;
@@ -89,7 +91,7 @@ const SignUp = () => {
         link={routes.signIn}
         linkText={formatMessage(messages.pageHeader.linkText)}
       />
-      <section className="form-box">
+      <FormBox>
         <form onSubmit={submitForm(onSubmit)}>
           <div className="input-box">
             <label htmlFor="email">Email</label>
@@ -101,11 +103,11 @@ const SignUp = () => {
                 value={form.email}
                 onChange={updateValue}
                 placeholder="Email"
+                className={styles.input}
               />
               {errors.email && <div className="input-errors">{errors.email}</div>}
             </div>
           </div>
-
           <div className="input-box">
             <label htmlFor="password">Password</label>
             <div className="input-panel">
@@ -120,11 +122,11 @@ const SignUp = () => {
                 value={form.password}
                 onChange={updateValue}
                 placeholder="Password"
+                className={styles.input}
               />
               {errors.password && <div className="input-errors">{errors.password}</div>}
             </div>
           </div>
-
           <div className="input-box">
             <label htmlFor="password2">Repeat Password</label>
             <div className="input-panel">
@@ -135,15 +137,16 @@ const SignUp = () => {
                 value={form.password2}
                 onChange={updateValue}
                 placeholder="Repeat Password"
+                className={styles.input}
               />
               {errors.password2 && <div className="input-errors">{errors.password2}</div>}
-              <button type="submit">
+              <button className={styles.submitButton} type="submit">
                 <MdArrowForwardIos className="arrow-icon" />
               </button>
             </div>
           </div>
         </form>
-      </section>
+      </FormBox>
     </>
   );
 };
