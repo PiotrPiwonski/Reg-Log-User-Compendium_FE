@@ -1,0 +1,29 @@
+.homeWrapper {
+    display: flex;
+    width: 50vw;
+    flexDirection: column;
+    justifyContent: center;
+    alignItems: center;
+}
+.homeTitle {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: -50px;
+    left: 8em;
+}
+
+.homeButtonWrapper {
+    display: flex;
+    gap: 30px;
+    marginTop: 40px
+}
+
+.homeButton {
+    display: flex;
+    position: relative;
+    fontSize: 35px;
+    width: 100%;
+    padding: 40px;
+
+}
