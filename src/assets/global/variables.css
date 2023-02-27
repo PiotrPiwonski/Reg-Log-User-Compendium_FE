@@ -1,0 +1,12 @@
+:root {
+  --white: rgb(255, 255, 255);
+  --grey-bgc: rgba(221, 221, 221, 0.1);
+  --grey: rgb(119, 119, 122);
+  --loader-track-color: #151515;
+  --loader-thumb-color: #6609c4;
+  --page-loader-backdrop: #1f1f1f;
+  --component-loader-backdrop: rgba(0, 0, 0, 0.4);
+  --inputErrorShadowColor: rgba(71, 27, 114, 0.8);
+  --textModalShadowColor: rgba(176, 2, 173, 0.5);
+  --mainFontColor: #ddd;
+}
