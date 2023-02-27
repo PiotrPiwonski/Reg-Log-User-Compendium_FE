@@ -38,7 +38,7 @@ body {
   background: #eee;
   border-radius: 16px;
   box-shadow: 1px 1px 9px var(--textModalShadowColor), -1px -1px 9px var(--textModalShadowColor),
-  1px -1px 9px var(--textModalShadowColor), -1px 1px 9px var(--textModalShadowColor);
+    1px -1px 9px var(--textModalShadowColor), -1px 1px 9px var(--textModalShadowColor);
 }
 
 .text-modal-text {
@@ -113,7 +113,7 @@ body {
   text-align: center;
   z-index: 899;
   box-shadow: 1px 1px 9px var(--inputErrorShadowColor), -1px -1px 9px var(--inputErrorShadowColor),
-  1px -1px 9px var(--inputErrorShadowColor), -1px 1px 9px var(--inputErrorShadowColor);
+    1px -1px 9px var(--inputErrorShadowColor), -1px 1px 9px var(--inputErrorShadowColor);
 }
 
 .input-icon {
@@ -148,4 +148,3 @@ body {
     margin-bottom: 25px;
   }
 }
-

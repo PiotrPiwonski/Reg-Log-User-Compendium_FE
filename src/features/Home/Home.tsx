@@ -11,21 +11,21 @@ export const Home = () => {
   }
   return (
     <div
-      data-testid="home-test"
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <h1 style={{ fontSize: 50 }}>HOME</h1>
-      <div style={{ display: 'flex', gap: 30, marginTop: 40 }}>
-        <button className={styles.button} onClick={() => navigate(routes.signIn)}>
+        className={styles.homeWrapper}
+      data-testid="home-test">
+      <h1
+          className={styles.homeTitle}
+      >HOME</h1>
+      <div
+          className={styles.homeButtonWrapper}
+      >
+        <button
+            className={styles.homeButton} onClick={() => navigate(routes.signIn)}
+        >
           Sing In
         </button>
-        <button className={styles.button} onClick={() => navigate(routes.signUp)}>
+        <button
+            className={styles.homeButton} onClick={() => navigate(routes.signUp)}>
           Sing Up
         </button>
       </div>
