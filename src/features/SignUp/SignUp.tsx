@@ -1,13 +1,19 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { HiOutlineEye, HiOutlineUserCircle } from 'react-icons/hi';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useIntl } from 'react-intl';
+
+import { messages } from './messages';
 
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import useForm from '../../hooks/useForm';
 import TextInfoModal from '../../components/TextInfoModal/TextInfoModal';
 import LoadingSpinner from '../../components/LoadingSpinners/LoadingSpinner';
 import { PagesTitles } from '../../config/pages-title';
+import { routes } from '../../routes/routesMap';
+import { PageHeader } from '../../components/PageHeader';
+import { FormBox } from '../../components/form/FormBox';
+import styles from '../../components/form/FormInput/FormInput.module.css';
 
 type SignUpForm = {
   email: string;
@@ -16,6 +22,7 @@ type SignUpForm = {
 };
 
 const SignUp = () => {
+  const { formatMessage } = useIntl();
   // Local state and hooks
   const [loading, setLoading] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -78,14 +85,13 @@ const SignUp = () => {
   return (
     <>
       <TextInfoModal modalVisible={modalVisible} modalText={modalText} linkPath={modalLink} closeModal={closeModal} />
-      <h1 className="section-title">Sign Up</h1>
-      <p className="account-info">
-        Already have an account?{' '}
-        <Link to="/" className="sign-up account-info">
-          Log in here.
-        </Link>
-      </p>
-      <section className="form-box">
+      <PageHeader
+        title={formatMessage(messages.pageHeader.title)}
+        info={formatMessage(messages.pageHeader.info)}
+        link={routes.signIn}
+        linkText={formatMessage(messages.pageHeader.linkText)}
+      />
+      <FormBox>
         <form onSubmit={submitForm(onSubmit)}>
           <div className="input-box">
             <label htmlFor="email">Email</label>
@@ -97,11 +103,11 @@ const SignUp = () => {
                 value={form.email}
                 onChange={updateValue}
                 placeholder="Email"
+                className={styles.input}
               />
               {errors.email && <div className="input-errors">{errors.email}</div>}
             </div>
           </div>
-
           <div className="input-box">
             <label htmlFor="password">Password</label>
             <div className="input-panel">
@@ -116,11 +122,11 @@ const SignUp = () => {
                 value={form.password}
                 onChange={updateValue}
                 placeholder="Password"
+                className={styles.input}
               />
               {errors.password && <div className="input-errors">{errors.password}</div>}
             </div>
           </div>
-
           <div className="input-box">
             <label htmlFor="password2">Repeat Password</label>
             <div className="input-panel">
@@ -131,15 +137,16 @@ const SignUp = () => {
                 value={form.password2}
                 onChange={updateValue}
                 placeholder="Repeat Password"
+                className={styles.input}
               />
               {errors.password2 && <div className="input-errors">{errors.password2}</div>}
-              <button type="submit">
+              <button className={styles.submitButton} type="submit">
                 <MdArrowForwardIos className="arrow-icon" />
               </button>
             </div>
           </div>
         </form>
-      </section>
+      </FormBox>
     </>
   );
 };

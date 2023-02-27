@@ -2,6 +2,8 @@ import { IconType } from 'react-icons/lib';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { ChangeEvent } from 'react';
 
+import styles from './FormInput.module.css';
+
 interface Props {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   name: string;
@@ -14,7 +16,7 @@ interface Props {
   isButtonSubmit?: boolean;
 }
 
-const FormInput = ({
+export const FormInput = ({
   onChange,
   name,
   type,
@@ -32,9 +34,17 @@ const FormInput = ({
       </label>
       <div className="input-panel">
         {IconInput && <IconInput className="input-icon" />}
-        <input type={type} name={name} id={name} value={value} onChange={onChange} placeholder={placeholder} />
+        <input
+          className={styles.input}
+          type={type}
+          name={name}
+          id={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
         {isButtonSubmit && (
-          <button type="submit">
+          <button className={styles.submitButton} type="submit">
             <MdArrowForwardIos className="arrow-icon" />
           </button>
         )}
@@ -42,5 +52,3 @@ const FormInput = ({
     </div>
   );
 };
-
-export default FormInput;
