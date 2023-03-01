@@ -19,7 +19,6 @@ body {
       transparent
     );
 }
-/*move TextInfoModal styles from main.css to TextInfoModal.module.cssst*/
 
 .section-title {
   margin-bottom: 0.5rem;

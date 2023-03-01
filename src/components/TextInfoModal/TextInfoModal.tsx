@@ -26,7 +26,7 @@ const TextInfoModal: React.FC<Props> = ({ modalVisible, modalText, linkPath, clo
               </button>
             </Link>
           ) : (
-            <button className={'styles.textModalButton'} onClick={closeModal}>
+            <button className={styles.textModalButton} onClick={closeModal}>
               OK
             </button>
           )}
