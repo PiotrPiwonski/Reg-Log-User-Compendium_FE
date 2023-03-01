@@ -73,11 +73,11 @@ export const SignIn = () => {
         dispatch({ type: 'SET_USER', payload: userData });
         setModalLink('/logged-in-user');
       } else if (res.status === 401) {
-        openModal(`Wrong email or password.`);
+        openModal(formatMessage(messages.modalText.error401));
         return;
       }
     } catch (error: unknown) {
-      openModal('An unknown error occurred. Wait a few minutes and try again.');
+      openModal(formatMessage(messages.modalText.errorUnknown));
       console.log('Error: ', error);
       return;
     } finally {
