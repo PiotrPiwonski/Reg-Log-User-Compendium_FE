@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import styles from './TextInfoModal.module.css';
 type Props = {
   modalVisible: boolean;
   modalText: string;
@@ -14,18 +15,18 @@ const TextInfoModal: React.FC<Props> = ({ modalVisible, modalText, linkPath, clo
     <>
       {/* TODO  find and replace with semantic html - avoid nested divs*/}
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className="text-modal-container" onClick={closeModal}>
+      <div className={styles.textModalContainer} onClick={closeModal}>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div className="text-modal-box" onClick={(e) => e.stopPropagation()}>
-          <div className="text-modal-text">{modalText}</div>
+        <div className={styles.textModalBox} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.textModalText}>{modalText}</div>
           {linkPath ? (
-            <Link to={linkPath} className="text-modal-link">
-              <button className="text-modal-button" onClick={closeModal}>
+            <Link to={linkPath} className={styles.textModalLink}>
+              <button className={styles.textModalButton} onClick={closeModal}>
                 OK
               </button>
             </Link>
           ) : (
-            <button className="text-modal-button" onClick={closeModal}>
+            <button className={styles.textModalButton} onClick={closeModal}>
               OK
             </button>
           )}

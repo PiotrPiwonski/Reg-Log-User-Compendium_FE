@@ -20,49 +20,6 @@ body {
     );
 }
 
-.text-modal-container {
-  position: fixed;
-  inset: 0 0 0 0;
-  z-index: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.text-modal-box {
-  padding: 22px;
-  margin: 0 20px 0 20px;
-  max-width: 400px;
-  z-index: 901;
-  background: #eee;
-  border-radius: 16px;
-  box-shadow: 1px 1px 9px var(--textModalShadowColor), -1px -1px 9px var(--textModalShadowColor),
-    1px -1px 9px var(--textModalShadowColor), -1px 1px 9px var(--textModalShadowColor);
-}
-
-.text-modal-text {
-  position: relative;
-  margin-top: 16px;
-  font-size: 16px;
-  color: black;
-  text-align: center;
-}
-
-.text-modal-link {
-  text-decoration: none;
-}
-
-.text-modal-button {
-  position: relative;
-  height: auto;
-  width: 100px;
-  padding: 14px;
-  margin: 40px auto 0 auto;
-  font-size: 16px;
-  color: white;
-}
-
 .section-title {
   margin-bottom: 0.5rem;
   text-align: center;
