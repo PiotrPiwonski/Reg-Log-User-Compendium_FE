@@ -26,4 +26,15 @@ export const messages = {
       defaultMessage: 'Sign up now!',
     },
   },
+
+  modalText: {
+    error401: {
+      id: '401',
+      defaultMessage: 'Wrong email or password.',
+    },
+    errorUnknown: {
+      id: 'unknown',
+      defaultMessage: 'An unknown error occurred. Wait a few minutes and try again.',
+    },
+  },
 };

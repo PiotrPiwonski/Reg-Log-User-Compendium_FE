@@ -6,6 +6,7 @@ import { messages } from './messages';
 
 import AuthContext from '../../context/auth/AuthContext';
 import LoadingSpinner from '../../components/LoadingSpinners/LoadingSpinner';
+import TextInfoModal from '../../components/TextInfoModal/TextInfoModal';
 import AuthSignIn from '../../components/auth/AuthSignIn';
 import { PageHeader } from '../../components/PageHeader';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
@@ -22,6 +23,9 @@ export const SignIn = () => {
     password: '',
   });
   const { email, password } = formData;
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [modalText, setModalText] = useState<string>('');
+  const [modalLink, setModalLink] = useState<string>('');
 
   // Context
   const { state: authState, dispatch } = useContext(AuthContext);
@@ -29,6 +33,15 @@ export const SignIn = () => {
   useDocumentTitle(PagesTitles.SIGN_IN);
 
   // Handlers
+  const openModal = (text: string) => {
+    setModalText(text);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -44,7 +57,7 @@ export const SignIn = () => {
     try {
       // TODO: implement response from AXIOS instead of fetch and move all to separated custom hook
       //  There is one line of code instead of 8 lines :D
-      const responseFromAxios = await login(formData);
+      //const responseFromAxios = await login(formData);
 
       const res = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
@@ -58,12 +71,15 @@ export const SignIn = () => {
       if (res.status === 200) {
         const userData = (await res.json()) as UserLoginRes;
         dispatch({ type: 'SET_USER', payload: userData });
+        setModalLink('/logged-in-user');
       } else if (res.status === 401) {
-        alert('Błędny email lub hasło.');
+        openModal(formatMessage(messages.modalText.error401));
+        return;
       }
     } catch (error: unknown) {
-      alert('Coś poszło nie tak...');
+      openModal(formatMessage(messages.modalText.errorUnknown));
       console.log('Error: ', error);
+      return;
     } finally {
       dispatch({ type: 'CLEAR_LOADING' });
     }
@@ -77,24 +93,25 @@ export const SignIn = () => {
 
   // TODO: Think about architecture here
   // I would say that auth.user info is already information which should be on route /user/profile or some modal to be clicked
-  if (authState.user) {
-    return (
-      <div>
-        <h1>
-          {formatMessage(messages.welcome)} {authState.user.email}
-        </h1>
-        <p>
-          {formatMessage(messages.yourId)} {authState.user.id}
-        </p>
-        <p>
-          {formatMessage(messages.yourRole)} {authState.user.role}
-        </p>
-      </div>
-    );
-  }
+  // if (authState.user) {
+  //   return (
+  //     <div>
+  //       <h1>
+  //         {formatMessage(messages.welcome)} {authState.user.email}
+  //       </h1>
+  //       <p>
+  //         {formatMessage(messages.yourId)} {authState.user.id}
+  //       </p>
+  //       <p>
+  //         {formatMessage(messages.yourRole)} {authState.user.role}
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
+      <TextInfoModal modalVisible={modalVisible} modalText={modalText} linkPath={modalLink} closeModal={closeModal} />
       {authState.isLoading ? (
         <LoadingSpinner isLoadingPage={true} />
       ) : (
