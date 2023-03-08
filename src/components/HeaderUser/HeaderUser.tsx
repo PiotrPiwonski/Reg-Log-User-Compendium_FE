@@ -2,10 +2,20 @@ import { HeaderUserProps } from './types';
 import styles from './HeaderUser.module.css';
 
 export const HeaderUser = ({ id, email, role }: HeaderUserProps) => {
+  const arrayAvatar = [
+    '/avatars/w1.png',
+    '/avatars/w2.png',
+    '/avatars/w3.png',
+    '/avatars/w4.png',
+    '/avatars/w5.png',
+    '/avatars/w6.png',
+  ];
+  const random = Math.floor(Math.random() * arrayAvatar.length);
+
   return (
     <header data-testid="header-user-test" className={styles.headerUserWrapper}>
       <div className={styles.headerUserAvatarWrapper}>
-        <img src="/avatars/w1.png" alt="Avatar" className={styles.headerUserAvatarImg} />
+        <img src={arrayAvatar[random]} alt="Avatar" className={styles.headerUserAvatarImg} />
       </div>
       <div className={styles.headerUserInfoWrapper}>
         <h1 className={styles.headerUserInfoTitle}>Witaj użytkowniku (email): {email}</h1>
