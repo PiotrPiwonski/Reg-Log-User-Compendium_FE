@@ -13,6 +13,7 @@ import { PagesTitles } from '../../config/pages-title';
 import { routes } from '../../routes/routesMap';
 import { PageHeader } from '../../components/PageHeader';
 import { FormBox } from '../../components/form/FormBox';
+import { FormInput } from '../../components/form/FormInput';
 import styles from '../../components/form/FormInput/FormInput.module.css';
 
 type SignUpForm = {
@@ -94,16 +95,16 @@ const SignUp = () => {
       <FormBox>
         <form onSubmit={submitForm(onSubmit)}>
           <div className="input-box">
-            <label htmlFor="email">Email</label>
             <div className="input-panel">
               <HiOutlineUserCircle className="input-icon" />
-              <input
-                {...tag('email', { required: true, email: true })}
+              <FormInput
+                name={tag('email', { required: true, email: true }).name}
                 type="email"
                 value={form.email}
                 onChange={updateValue}
                 placeholder="Email"
                 className={styles.input}
+                labelTitle="Email"
               />
               {errors.email && <div className="input-errors">{errors.email}</div>}
             </div>
