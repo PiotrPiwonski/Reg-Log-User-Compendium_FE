@@ -16,12 +16,12 @@ describe('HeaderUser', () => {
   });
 
   it('should render email', () => {
-    expect(screen.getByText('Witaj użytkowniku (email) test@gmail.com')).toBeInTheDocument();
+    expect(screen.getByText('Witaj użytkowniku (email): test@gmail.com')).toBeInTheDocument();
   });
 
   it('should render HeaderUser with email', () => {
-    expect(screen.getByText('Witaj użytkowniku (email) test@gmail.com')).toHaveTextContent(
-      'Witaj użytkowniku (email) test@gmail.com',
+    expect(screen.getByText('Witaj użytkowniku (email): test@gmail.com')).toHaveTextContent(
+      'Witaj użytkowniku (email): test@gmail.com',
     );
   });
 
