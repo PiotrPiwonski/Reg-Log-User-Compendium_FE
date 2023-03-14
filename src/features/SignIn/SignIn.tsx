@@ -1,6 +1,7 @@
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { UserLoginRes } from 'types/backend';
+import { useNavigate } from 'react-router-dom';
 
 import { messages } from './messages';
 
@@ -12,7 +13,6 @@ import { PageHeader } from '../../components/PageHeader';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { PagesTitles } from '../../config/pages-title';
 import { routes } from '../../routes/routesMap';
-import { login } from '../../services/api/auth';
 
 export const SignIn = () => {
   const { formatMessage } = useIntl();
@@ -48,6 +48,17 @@ export const SignIn = () => {
       [event.target.name]: event.target.value,
     }));
   };
+
+  // Navigate
+  const navigate = useNavigate();
+
+  //UseEffect
+  useEffect(() => {
+    if (authState.user) {
+      console.log(authState.user);
+      navigate(routes.loggedInUser);
+    }
+  }, [authState.user, navigate]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -90,24 +101,6 @@ export const SignIn = () => {
   if (authState.isLoading) {
     return <LoadingSpinner isLoadingPage={true} />;
   }
-
-  // TODO: Think about architecture here
-  // I would say that auth.user info is already information which should be on route /user/profile or some modal to be clicked
-  // if (authState.user) {
-  //   return (
-  //     <div>
-  //       <h1>
-  //         {formatMessage(messages.welcome)} {authState.user.email}
-  //       </h1>
-  //       <p>
-  //         {formatMessage(messages.yourId)} {authState.user.id}
-  //       </p>
-  //       <p>
-  //         {formatMessage(messages.yourRole)} {authState.user.role}
-  //       </p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <>
