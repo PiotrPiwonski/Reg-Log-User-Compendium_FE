@@ -1,6 +1,8 @@
 import { UserLoginRes } from 'types/backend';
 
-export const getUserWithCookie = async () => {
+import { User } from 'types/frontend';
+
+export const getUserWithCookie = async (): Promise<User | null> => {
   try {
     const res = await fetch('http://localhost:3001/user/profile', {
       method: 'GET',
@@ -11,7 +13,17 @@ export const getUserWithCookie = async () => {
       return null;
     }
 
-    return (await res.json()) as UserLoginRes;
+    const data = (await res.json()) as UserLoginRes;
+
+    //TODO to plaster - na BE poprawić zwracany typ obiektu json
+    // (że id i role nigdy nie jest undefined)
+    const user: User = {
+      email: data.email,
+      id: data.id as string,
+      role: data.role as number,
+    };
+
+    return user;
   } catch (error: unknown) {
     console.log('Error auto logging user with cookie: ', error);
     return null;

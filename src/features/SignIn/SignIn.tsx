@@ -3,6 +3,8 @@ import { useIntl } from 'react-intl';
 import { UserLoginRes } from 'types/backend';
 import { useNavigate } from 'react-router-dom';
 
+import { User } from 'types/frontend';
+
 import { messages } from './messages';
 
 import AuthContext from '../../context/auth/AuthContext';
@@ -58,6 +60,10 @@ export const SignIn = () => {
       console.log(authState.user);
       navigate(routes.loggedInUser);
     }
+    if (authState.user === undefined) {
+      console.log('null');
+      navigate(routes.signIn);
+    }
   }, [authState.user, navigate]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -81,7 +87,14 @@ export const SignIn = () => {
 
       if (res.status === 200) {
         const userData = (await res.json()) as UserLoginRes;
-        dispatch({ type: 'SET_USER', payload: userData });
+        // TODO to plaster - na BE poprawić zwracany typ obiektu json
+        // (że id i role nigdy nie jest undefined)
+        const user: User = {
+          id: userData.id as string,
+          email: userData.email,
+          role: userData.role as number,
+        };
+        dispatch({ type: 'SET_USER', payload: user });
         setModalLink('/logged-in-user');
       } else if (res.status === 401) {
         openModal(formatMessage(messages.modalText.error401));
