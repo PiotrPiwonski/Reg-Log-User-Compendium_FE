@@ -1,0 +1,17 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# run linters for changed files
+#npx run lint-staged
+
+# format prettier write
+npm run format
+
+# check types globally
+npm run lint:types
+
+# check global circular-deps
+npm run check:circular-deps
+
+# run all tests
+npm run test

@@ -1,0 +1,44 @@
+{
+  "categories": [
+    {
+      "category": "",
+      "words": []
+    },
+    {
+      "category": "Test1",
+      "name": "osiem",
+      "words": [
+        {
+          "key": "ATV",
+          "label": "fake ATV"
+        },
+        {
+          "key": "STB",
+          "label": "Lineup STB"
+        },
+        {
+          "key": "LEGACY",
+          "label": "Lineup LEGACY"
+        }
+      ]
+    },
+    {
+      "category": "Test2",
+      "name": "dziwieciec",
+      "words": [
+        {
+          "key": "ATV",
+          "label": "fake ATV"
+        },
+        {
+          "key": "STB",
+          "label": "Lineup STB"
+        },
+        {
+          "key": "LEGACY",
+          "label": "Lineup LEGACY"
+        }
+      ]
+    }
+  ]
+}
