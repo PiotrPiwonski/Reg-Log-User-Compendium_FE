@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 
-import AuthContext, { AuthProvider } from './context/auth/AuthContext';
+import AuthContext from './context/auth/AuthContext';
 import LoadingSpinner from './components/LoadingSpinners/LoadingSpinner';
 import { AppRoutes } from './routes/Routes';
 import { getUserWithCookie } from './context/auth/AuthActions';
@@ -28,10 +28,8 @@ export const App = () => {
   if (authState.isLoading) return <LoadingSpinner isLoadingPage={true} />;
 
   return (
-    <AuthProvider>
-      <TranslationProvider>
-        <AppRoutes />
-      </TranslationProvider>
-    </AuthProvider>
+    <TranslationProvider>
+      <AppRoutes />
+    </TranslationProvider>
   );
 };
