@@ -4,6 +4,8 @@ import { AuthActions, AuthState } from 'types/frontend';
 
 import authReducer from './AuthReducer';
 
+import { UserRole } from '../../features/LoggedInUser/types';
+
 type Props = {
   children: React.ReactNode;
 };
