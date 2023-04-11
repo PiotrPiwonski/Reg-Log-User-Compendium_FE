@@ -1,12 +1,19 @@
 import { LoggedInUser } from '../LoggedInUser';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('LoggedInUser', () => {
+  // it('should render LoggedInUser', () => {
+  //   render(<LoggedInUser />);
+  //   const component = screen.getByText('LogOut');
+  //   console.log(component);
+  //   expect(component).toBeInTheDocument();
+  //   screen.getByRole('heading');
+  // });
   it('should render LoggedInUser', () => {
-    //render(<LoggedInUser />);
-    // const component = screen.getByText('LogOut');
-    // console.log(component);
-    // expect(component).toBeInTheDocument();
-    // screen.getByRole('heading');
+    render(<LoggedInUser />);
+    const component = screen.getByText('Todo LogOut');
+    console.log(component);
+    expect(component).toBeInTheDocument();
+    screen.getByRole('heading');
   });
 });

@@ -15,8 +15,6 @@ export const getUserWithCookie = async (): Promise<User | null> => {
 
     const data = (await res.json()) as UserLoginRes;
 
-    //TODO to plaster - na BE poprawić zwracany typ obiektu json
-    // (że id i role nigdy nie jest undefined)
     const user: User = {
       email: data.email,
       id: data.id as string,

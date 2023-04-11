@@ -57,11 +57,9 @@ export const SignIn = () => {
   //UseEffect
   useEffect(() => {
     if (authState.user) {
-      console.log(authState.user);
       navigate(routes.loggedInUser);
     }
     if (authState.user === undefined) {
-      console.log('null');
       navigate(routes.signIn);
     }
   }, [authState.user, navigate]);
@@ -87,8 +85,7 @@ export const SignIn = () => {
 
       if (res.status === 200) {
         const userData = (await res.json()) as UserLoginRes;
-        // TODO to plaster - na BE poprawić zwracany typ obiektu json
-        // (że id i role nigdy nie jest undefined)
+
         const user: User = {
           id: userData.id as string,
           email: userData.email,
