@@ -1,34 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-
 import { HeaderUserProps } from './types';
 import styles from './HeaderUser.module.css';
 
 import { arrayAvatar } from '../../utils/avatars';
 import { randomAvatar } from '../../utils/randomAvatar';
-import AuthContext from '../../context/auth/AuthContext';
-import { routes } from '../../routes/routesMap';
+import { useLogout } from './useLogout';
 
 export const HeaderUser = ({ id, email, role }: HeaderUserProps) => {
-  const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
+  const { handleLogOut } = useLogout();
 
-  const handleLogOut = async () => {
-    const res = await fetch('http://localhost:3001/auth/logout', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (res.status === 200) {
-      console.log('wylogowanie');
-      dispatch({ type: 'RESET_USER' });
-      return navigate(routes.home);
-    } else {
-      console.log('błąd wylogowania');
-    }
-  };
   return (
     <header data-testid="header-user-test" className={styles.headerUserWrapper}>
       <div className={styles.headerUserAvatarWrapper}>

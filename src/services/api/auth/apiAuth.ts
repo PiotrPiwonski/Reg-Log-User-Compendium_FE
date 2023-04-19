@@ -4,5 +4,17 @@ import { ILoginCredentials } from './types';
 import { apiClient } from '../apiClient';
 
 export const login = async (credentials: ILoginCredentials) => {
-  return await apiClient.post(ENDPOINTS.LOGIN, credentials);
+  try {
+    return await apiClient.post(ENDPOINTS.LOGIN, credentials);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const logout = async () => {
+  try {
+    return await apiClient.post(ENDPOINTS.LOGOUT);
+  } catch (e) {
+    console.log(e);
+  }
 };
