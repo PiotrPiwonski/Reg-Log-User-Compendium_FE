@@ -33,6 +33,16 @@ describe('HeaderUser', () => {
     expect(screen.getByText('Twoja rola w systemie to: User')).toHaveTextContent('Twoja rola w systemie to: User');
   });
 
+  it('should render time counter', () => {
+    expect(screen.getByText('20s. - Czas nieaktywności do wylogowania.')).toBeInTheDocument();
+  });
+
+  it('should render HeaderUser with time counter', () => {
+    expect(screen.getByText('20s. - Czas nieaktywności do wylogowania.')).toHaveTextContent(
+      '20s. - Czas nieaktywności do wylogowania.',
+    );
+  });
+
   it('should render HeaderUser', () => {
     const component1 = screen.getByText('LogOut');
     console.log(component1);
